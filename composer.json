@@ -1,0 +1,19 @@
+{
+    "name": "ezweb/workflow",
+    "license": "MIT",
+    "version": "1.0",
+    "type": "library",
+    "description": "Workflow lib",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ezweb\\Workflow\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.11",
+        "phpstan/phpstan-strict-rules": "^0.12.2",
+        "phpstan/extension-installer": "^1.0",
+        "symfony/var-dumper": "^5.0"
+    }
+}
