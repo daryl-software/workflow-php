@@ -17,6 +17,7 @@ class Workflow
         $this->typeProvider->register(Types\Condition::class);
         $this->typeProvider->register(Types\Vars::class);
         $this->typeProvider->register(Types\Value::class);
+        $this->typeProvider->register(Types\InternalFunction::class);
 
         $this->typeProvider->register(Types\Condition\Operators\All::class);
         $this->typeProvider->register(Types\Condition\Operators\Any::class);

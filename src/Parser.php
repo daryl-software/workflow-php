@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Ezweb\Workflow;
-
 
 class Parser
 {

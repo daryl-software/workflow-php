@@ -4,7 +4,6 @@ namespace Ezweb\Workflow\Types;
 
 class Condition extends Type
 {
-
     protected Condition\Operators\Operator $operator;
 
     public static function getType(): string

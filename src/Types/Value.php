@@ -15,7 +15,6 @@ class Value extends Type
     {
         $object = new static();
         $object->value = $config->value;
-        dump($config);
         return $object;
     }
 }

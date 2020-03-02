@@ -2,10 +2,10 @@
 
 namespace Ezweb\Workflow\Types;
 
-class Operator extends Type
+class InternalFunction extends Type
 {
     public static function getType(): string
     {
-        return 'operator';
+        return 'internalFunction';
     }
 }
