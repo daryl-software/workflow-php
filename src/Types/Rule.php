@@ -8,4 +8,13 @@ class Rule extends Type
     {
         return 'rule';
     }
+
+    public function getResult()
+    {
+        $r = [];
+        foreach ($this->values as $value) {
+            $r[] = $value->getResult();
+        }
+        return $r;
+    }
 }

@@ -18,4 +18,10 @@ class Condition extends Type
         $object->operator = new $operatorClassName();
         return $object;
     }
+
+
+    public function getResult()
+    {
+        return $this->operator->getResult();
+    }
 }

@@ -2,12 +2,15 @@
 
 namespace Ezweb\Workflow;
 
+use Ezweb\Workflow\InternalFunction\Providers\InternalFunctionProvider;
 use Ezweb\Workflow\Operators\Equal;
+use Ezweb\Workflow\Types\InternalFunction\Modulo;
 
 class Workflow
 {
     private Types\Providers\TypeProvider $typeProvider;
     private Operators\Providers\OperatorProvider $operatorProvider;
+    private InternalFunctionProvider $internalFunction;
 
     public function init()
     {
@@ -24,5 +27,8 @@ class Workflow
 
         $this->operatorProvider = Operators\Providers\OperatorProvider::getInstance();
         $this->operatorProvider->register(Equal::class);
+
+        $this->internalFunction = InternalFunctionProvider::getInstance();
+        $this->internalFunction->register(Modulo::class);
     }
 }

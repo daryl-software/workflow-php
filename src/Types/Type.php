@@ -11,6 +11,8 @@ abstract class Type
 
     abstract public static function getType(): string;
 
+    abstract public function getResult();
+
     /**
      * @return array<Type>
      */

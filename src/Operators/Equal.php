@@ -10,4 +10,11 @@ class Equal extends Operator
     {
         return 'equal';
     }
+
+    public function getResult()
+    {
+        foreach ($this->values as $value) {
+            
+        }
+    }
 }
