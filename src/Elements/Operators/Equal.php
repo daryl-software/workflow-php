@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Ezweb\Workflow\Operators;
+namespace Ezweb\Workflow\Elements\Operators;
 
 
 class Equal extends Operator
 {
-    public static function getOperator(): string
+    public static function getName(): string
     {
         return 'equal';
     }
@@ -14,7 +14,7 @@ class Equal extends Operator
     public function getResult()
     {
         foreach ($this->values as $value) {
-            
+
         }
     }
 }

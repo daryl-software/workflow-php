@@ -2,8 +2,6 @@
 
 namespace Ezweb\Workflow;
 
-use Ezweb\Workflow\Types\Rule;
-
 class Process implements \JsonSerializable
 {
     /**
@@ -13,7 +11,7 @@ class Process implements \JsonSerializable
 
     /**
      * Rules to execute
-     * @var array<Types\Rule>
+     * @var array<\Ezweb\Workflow\Elements\Types\ParentTypes\Rule>
      */
     private array $rules;
 
@@ -54,10 +52,10 @@ class Process implements \JsonSerializable
     }
 
     /**
-     * @param Rule $rules
+     * @param \Ezweb\Workflow\Elements\Types\ParentTypes\Rule $rules
      * @return Process
      */
-    public function addRule(Rule $rules): Process
+    public function addRule(\Ezweb\Workflow\Elements\Types\ParentTypes\Rule $rules): Process
     {
         $this->rules[] = $rules;
         return $this;

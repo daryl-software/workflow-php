@@ -2,33 +2,30 @@
 
 namespace Ezweb\Workflow;
 
-use Ezweb\Workflow\InternalFunction\Providers\InternalFunctionProvider;
-use Ezweb\Workflow\Operators\Equal;
-use Ezweb\Workflow\Types\InternalFunction\Modulo;
-
 class Workflow
 {
-    private Types\Providers\TypeProvider $typeProvider;
-    private Operators\Providers\OperatorProvider $operatorProvider;
-    private InternalFunctionProvider $internalFunction;
+    private \Ezweb\Workflow\Providers\TypeProvider $typeProvider;
+    private \Ezweb\Workflow\Providers\OperatorProvider $operatorProvider;
+    private \Ezweb\Workflow\Providers\InternalFunctionProvider $internalFunction;
 
     public function init()
     {
-        $this->typeProvider = Types\Providers\TypeProvider::getInstance();
-        $this->typeProvider->register(Types\Rule::class);
-        $this->typeProvider->register(Types\Operator::class);
-        $this->typeProvider->register(Types\Condition::class);
-        $this->typeProvider->register(Types\Vars::class);
-        $this->typeProvider->register(Types\Value::class);
-        $this->typeProvider->register(Types\InternalFunction::class);
+        // providers registrations
+        $this->typeProvider = \Ezweb\Workflow\Providers\TypeProvider::getInstance();
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Rule::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Operator::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Condition::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ScalarTypes\Vars::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\ParentTypes\InternalFunction::class);
 
-        $this->typeProvider->register(Types\Condition\Operators\All::class);
-        $this->typeProvider->register(Types\Condition\Operators\Any::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\Condition\Operators\All::class);
+        $this->typeProvider->register(\Ezweb\Workflow\Elements\Types\Condition\Operators\Any::class);
+        $this->operatorProvider = \Ezweb\Workflow\Providers\OperatorProvider::getInstance();
+        $this->operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Equal::class);
 
-        $this->operatorProvider = Operators\Providers\OperatorProvider::getInstance();
-        $this->operatorProvider->register(Equal::class);
+        $this->internalFunction = \Ezweb\Workflow\Providers\InternalFunctionProvider::getInstance();
+        $this->internalFunction->register(\Ezweb\Workflow\Elements\InternalFunctions\Modulo::class);
 
-        $this->internalFunction = InternalFunctionProvider::getInstance();
-        $this->internalFunction->register(Modulo::class);
     }
 }

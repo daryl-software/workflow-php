@@ -1,10 +1,10 @@
 <?php
 
-namespace Ezweb\Workflow\Types;
+namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
-class Rule extends Type
+class Rule extends ParentType
 {
-    public static function getType(): string
+    public static function getName(): string
     {
         return 'rule';
     }

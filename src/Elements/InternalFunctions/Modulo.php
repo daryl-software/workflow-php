@@ -1,6 +1,6 @@
 <?php
 
-namespace Ezweb\Workflow\Types\InternalFunction;
+namespace Ezweb\Workflow\Elements\InternalFunctions;
 
 class Modulo extends InternalFunction
 {

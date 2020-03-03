@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ezweb\Workflow\Types\Condition\Operators;
+namespace Ezweb\Workflow\Elements\Types\Condition\Operators;
 
 
 class All extends Operator
@@ -10,12 +10,6 @@ class All extends Operator
     {
         return 'all';
     }
-
-    public static function getType(): string
-    {
-        return 'all';
-    }
-
 
     public function getResult()
     {

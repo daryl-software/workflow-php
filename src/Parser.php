@@ -23,17 +23,21 @@ class Parser
         if (!isset($decodedJson->type)) {
             return null;
         }
-        $classType = Types\Providers\TypeProvider::getInstance()->getClassFromType($decodedJson->type);
 
-        /** @var Types\Type $type */
-        $type = $classType::loadFromConfig($decodedJson);
+        $classType = \Ezweb\Workflow\Providers\TypeProvider::getInstance()->getClass($decodedJson->type);
+        /** @var \Ezweb\Workflow\Elements\Types\Type $typeElement */
+        $typeElement = $classType::loadFromConfig($decodedJson);
+        if (!isset($decodedJson->value)) {
+            var_dump('---------');
+            var_dump($decodedJson);
+        }
         if (\is_array($decodedJson->value)) {
             foreach ($decodedJson->value as $v) {
-                $type->addValue(self::parseMatcher($v));
+                $typeElement->addValue(self::parseMatcher($v));
             }
         } elseif ($decodedJson->value instanceof \stdClass) {
-            $type->addValue(self::parseMatcher($decodedJson->value));
+            $typeElement->addValue(self::parseMatcher($decodedJson->value));
         }
-        return $type;
+        return $typeElement;
     }
 }

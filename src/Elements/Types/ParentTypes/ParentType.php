@@ -1,27 +1,23 @@
 <?php
 
-namespace Ezweb\Workflow\Types;
+namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
-abstract class Type
+abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
 {
     /**
-     * @var array<Type>
+     * @var array<\Ezweb\Workflow\Elements\Types\Type>
      */
     protected array $values;
 
-    abstract public static function getType(): string;
-
-    abstract public function getResult();
-
     /**
-     * @return array<Type>
+     * @return array<\Ezweb\Workflow\Elements\Types\Type>
      */
     public function getValue(): array
     {
         return $this->values;
     }
 
-    public function addValue(Type $value): Type
+    public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): self
     {
         $this->values[] = $value;
         return $this;
