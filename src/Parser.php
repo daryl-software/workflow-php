@@ -4,40 +4,46 @@ namespace Ezweb\Workflow;
 
 class Parser
 {
+    private static function init()
+    {
+        Loader::load();
+    }
+
     public static function createFromJson(string $json)
     {
+        self::init();
         $decodedJson = json_decode($json);
         if ($decodedJson === false) {
             throw new \RuntimeException('Invalid JSON: ' . json_last_error_msg());
         }
         $process = new Process($decodedJson->name, $decodedJson->behavior);
 
-        foreach ($decodedJson->value as $v){
-            $process->addRule(self::parseMatcher($v));
+        foreach ($decodedJson->value as $value){
+            $parsedValue = self::parse($value);
+            if ($parsedValue instanceof \Ezweb\Workflow\Elements\Types\ParentTypes\Rule) {
+                $process->addRule($parsedValue);
+            }
         }
         return $process;
     }
 
-    private static function parseMatcher(\stdClass $decodedJson)
+    private static function parse(\stdClass $decodedJson)
     {
         if (!isset($decodedJson->type)) {
             return null;
         }
 
-        $classType = \Ezweb\Workflow\Providers\TypeProvider::getInstance()->getClass($decodedJson->type);
+        $classType = \Ezweb\Workflow\Providers\Type::getInstance()->getClass($decodedJson->type);
         /** @var \Ezweb\Workflow\Elements\Types\Type $typeElement */
         $typeElement = $classType::loadFromConfig($decodedJson);
-        if (!isset($decodedJson->value)) {
-            var_dump('---------');
-            var_dump($decodedJson);
-        }
         if (\is_array($decodedJson->value)) {
             foreach ($decodedJson->value as $v) {
-                $typeElement->addValue(self::parseMatcher($v));
+                $typeElement->addValue(self::parse($v));
             }
         } elseif ($decodedJson->value instanceof \stdClass) {
-            $typeElement->addValue(self::parseMatcher($decodedJson->value));
+            $typeElement->addValue(self::parse($decodedJson->value));
         }
+
         return $typeElement;
     }
 }

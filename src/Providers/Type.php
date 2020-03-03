@@ -3,7 +3,7 @@
 namespace Ezweb\Workflow\Providers;
 
 
-class TypeProvider extends ElementProvider
+class Type extends Element
 {
     public static function getProviderType(): string
     {

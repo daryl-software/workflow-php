@@ -1,7 +1,7 @@
 <?php
 namespace Ezweb\Workflow\Providers;
 
-abstract class ElementProvider
+abstract class Element
 {
     protected static array $instance = [];
     protected array $registeredElement = [];

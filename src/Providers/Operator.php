@@ -4,7 +4,7 @@ namespace Ezweb\Workflow\Providers;
 
 
 
-class OperatorProvider extends ElementProvider
+class Operator extends Element
 {
     public static function getProviderType(): string
     {
