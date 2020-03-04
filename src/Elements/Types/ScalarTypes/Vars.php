@@ -8,4 +8,10 @@ class Vars extends ScalarType
     {
         return 'vars';
     }
+
+    public function getResult(array $vars)
+    {
+        return $vars[$this->scalarValue];
+    }
+
 }

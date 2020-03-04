@@ -10,4 +10,9 @@ class Scalar extends ScalarType
     {
         return 'scalar';
     }
+
+    public function getResult(array $vars)
+    {
+        return $this->scalarValue;
+    }
 }

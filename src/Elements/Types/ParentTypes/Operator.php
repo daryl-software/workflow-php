@@ -19,7 +19,7 @@ class Operator extends ParentType
     }
 
 
-    public function getResult()
+    public function getResult(array $vars)
     {
         $operatorClass = self::$operatorProvider->getClass($this->operator);
         $operator = new $operatorClass();

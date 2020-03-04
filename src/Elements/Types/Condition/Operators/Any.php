@@ -11,10 +11,10 @@ class Any extends Operator
         return 'any';
     }
 
-    public function getResult()
+    public function getResult(array $vars)
     {
-        foreach ($this->values as $value) {
-            if ($value === true) {
+        foreach ($this->operands as $operand) {
+            if ($operand->getResult($vars) === true) {
                 return true;
             }
         }

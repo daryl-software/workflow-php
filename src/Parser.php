@@ -16,15 +16,15 @@ class Parser
         if ($decodedJson === false) {
             throw new \RuntimeException('Invalid JSON: ' . json_last_error_msg());
         }
-        $process = new Process($decodedJson->name, $decodedJson->behavior);
+        $workflow = new Workflow($decodedJson->name, $decodedJson->behavior);
 
         foreach ($decodedJson->value as $value){
             $parsedValue = self::parse($value);
             if ($parsedValue instanceof \Ezweb\Workflow\Elements\Types\ParentTypes\Rule) {
-                $process->addRule($parsedValue);
+                $workflow->addRule($parsedValue);
             }
         }
-        return $process;
+        return $workflow;
     }
 
     private static function parse(\stdClass $decodedJson)

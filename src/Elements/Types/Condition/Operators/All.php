@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Ezweb\Workflow\Elements\Types\Condition\Operators;
-
 
 class All extends Operator
 {
@@ -11,10 +8,15 @@ class All extends Operator
         return 'all';
     }
 
-    public function getResult()
+    /**
+     * @param array<\Ezweb\Workflow\Elements\Types\Type> $operands
+     * @param array $vars
+     * @return bool
+     */
+    public function getResult(array $vars)
     {
-        foreach ($this->values as $value) {
-            if ($value !== true) {
+        foreach ($this->operands as $operand) {
+            if ($operand->getResult($vars) !== true) {
                 return false;
             }
         }

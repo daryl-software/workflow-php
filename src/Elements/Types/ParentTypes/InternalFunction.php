@@ -9,7 +9,7 @@ class InternalFunction extends ParentType
         return 'internalFunction';
     }
 
-    public function getResult()
+    public function getResult(array $vars)
     {
         // TODO: Implement getResult() method.
     }

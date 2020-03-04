@@ -19,9 +19,15 @@ class Condition extends ParentType
         return $instance;
     }
 
-
-    public function getResult()
+    public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
     {
-        return $this->operator->getResult();
+        parent::addValue($value);
+        $this->operator->addOperand($value);
+        return $this;
+    }
+
+    public function getResult(array $vars)
+    {
+        return $this->operator->getResult($vars);
     }
 }
