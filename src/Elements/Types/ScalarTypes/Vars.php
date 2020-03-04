@@ -11,6 +11,9 @@ class Vars extends ScalarType
 
     public function getResult(array $vars)
     {
+        if (!isset($vars[$this->scalarValue])) {
+            throw new \RuntimeException('Var ' . $this->scalarValue . ' is missing');
+        }
         return $vars[$this->scalarValue];
     }
 

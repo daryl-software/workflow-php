@@ -4,7 +4,7 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class Operator extends ParentType
 {
-    private string $operator;
+    private \Ezweb\Workflow\Elements\Operators\Operator $operator;
 
     public static function getName(): string
     {
@@ -14,16 +14,21 @@ class Operator extends ParentType
     public static function loadFromConfig(\stdClass $config): self
     {
         $instance = new static();
-        $instance->operator = $config->operator;
+        $operatorClass = self::$operatorProvider->getClass($config->operator);
+        $instance->operator = new $operatorClass();
         return $instance;
+    }
+
+    public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
+    {
+        parent::addValue($value);
+        $this->operator->addOperand($value);
+        return $this;
     }
 
 
     public function getResult(array $vars)
     {
-        $operatorClass = self::$operatorProvider->getClass($this->operator);
-        $operator = new $operatorClass();
-        $operator->values = $this->values;
-        return $operator->getResult();
+        return $this->operator->getResult($vars);
     }
 }

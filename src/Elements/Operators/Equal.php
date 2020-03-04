@@ -11,10 +11,19 @@ class Equal extends Operator
         return 'equal';
     }
 
-    public function getResult()
+    public function getResult(array $vars)
     {
-        foreach ($this->values as $value) {
-
+        if (empty($this->operands)) {
+            throw new \RuntimeException('No operands');
         }
+        // get first element to initialize value to check
+        $valueToBeEquals = $this->operands[0]->getResult($vars);
+        // first iteration will be always true, due to upper line
+        foreach ($this->operands as $iterationNumber => $operand) {
+            if ($valueToBeEquals != $operand->getResult($vars)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

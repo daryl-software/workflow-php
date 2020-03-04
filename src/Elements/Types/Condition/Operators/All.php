@@ -9,7 +9,6 @@ class All extends Operator
     }
 
     /**
-     * @param array<\Ezweb\Workflow\Elements\Types\Type> $operands
      * @param array $vars
      * @return bool
      */

@@ -13,11 +13,12 @@ class Rule extends ParentType
 
     public function getResult(array $vars)
     {
-        $r = [];
+        $result = true;
         foreach ($this->values as $value) {
-            $r[] = $value->getResult($vars);
+            // is result still valid ?
+            $result = $result === $value->getResult($vars);
         }
-        return $r;
+        return $result;
     }
 
     public static function loadFromConfig(\stdClass $config): ParentType

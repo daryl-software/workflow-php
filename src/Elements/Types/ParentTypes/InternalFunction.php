@@ -4,6 +4,8 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class InternalFunction extends ParentType
 {
+    public \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction $function;
+
     public static function getName(): string
     {
         return 'internalFunction';
@@ -11,12 +13,21 @@ class InternalFunction extends ParentType
 
     public function getResult(array $vars)
     {
-        // TODO: Implement getResult() method.
+        return $this->function->getResult($vars);
+    }
+
+    public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
+    {
+        parent::addValue($value);
+        $this->function->addArgs($value);
+        return $this;
     }
 
     public static function loadFromConfig(\stdClass $config): self
     {
         $instance = new static();
+        $className = self::$internalFunctionProvider->getClass($config->name);
+        $instance->function = new $className();
         return $instance;
     }
 }
