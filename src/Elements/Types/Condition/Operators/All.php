@@ -1,4 +1,5 @@
 <?php
+
 namespace Ezweb\Workflow\Elements\Types\Condition\Operators;
 
 class All extends Operator
@@ -20,5 +21,16 @@ class All extends Operator
             }
         }
         return true;
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'value' => $this->operands
+        ];
     }
 }

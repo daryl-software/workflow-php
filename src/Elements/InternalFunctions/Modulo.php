@@ -30,4 +30,12 @@ class Modulo extends InternalFunction
     {
         return 'modulo';
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->args;
+    }
 }

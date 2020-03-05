@@ -38,4 +38,16 @@ class Rule extends ParentType
     {
         return $this->return;
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'return' => $this->return,
+            'value' => $this->values
+        ];
+    }
 }

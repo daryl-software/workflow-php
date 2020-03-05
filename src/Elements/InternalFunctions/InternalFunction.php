@@ -24,7 +24,7 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
 
     /**
      * @param \Ezweb\Workflow\Elements\Types\Type $arg
-     * @return $this
+     * @return static
      */
     public function addArgs(\Ezweb\Workflow\Elements\Types\Type $arg): self
     {

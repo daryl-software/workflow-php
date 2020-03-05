@@ -24,4 +24,15 @@ class Any extends Operator
         }
         return false;
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'value' => $this->operands
+        ];
+    }
 }

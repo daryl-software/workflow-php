@@ -33,4 +33,16 @@ class Operator extends ParentType
     {
         return $this->operator->getResult($vars);
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'operator' => $this->operator::getName(),
+            'value' => $this->values
+        ];
+    }
 }

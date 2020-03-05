@@ -17,4 +17,14 @@ class Vars extends ScalarType
         return $vars[$this->scalarValue];
     }
 
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'value' => $this->scalarValue
+        ];
+    }
 }

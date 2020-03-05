@@ -34,4 +34,16 @@ class InternalFunction extends ParentType
         $instance->function = new $className();
         return $instance;
     }
+
+    /**
+     * @return mixed[]
+     */
+    public function jsonSerialize(): array
+    {
+        return [
+            'type' => self::getName(),
+            'name' => $this->function::getName(),
+            'value' => $this->function->jsonSerialize()
+        ];
+    }
 }

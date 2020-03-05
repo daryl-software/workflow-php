@@ -28,7 +28,10 @@ class Workflow implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return get_object_vars($this);
+        return [
+            'name' => $this->name,
+            'value' => $this->rules
+        ];
     }
 
     /**
@@ -106,5 +109,15 @@ class Workflow implements \JsonSerializable
             }
         }
         return null;
+    }
+
+    /**
+     * Convert to json
+     * @param int $flags Json constant flag
+     * @return false|string
+     */
+    public function toJson(int $flags = 0)
+    {
+        return json_encode($this, $flags);
     }
 }

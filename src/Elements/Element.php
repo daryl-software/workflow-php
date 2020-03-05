@@ -2,7 +2,7 @@
 
 namespace Ezweb\Workflow\Elements;
 
-abstract class Element
+abstract class Element implements \JsonSerializable
 {
     protected static \Ezweb\Workflow\Providers\Type $typeProviders;
     protected static \Ezweb\Workflow\Providers\Operator $operatorProvider;
