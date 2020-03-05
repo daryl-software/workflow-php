@@ -11,7 +11,11 @@ class Any extends Operator
         return 'any';
     }
 
-    public function getResult(array $vars)
+    /**
+     * @param mixed[] $vars
+     * @return bool
+     */
+    public function getResult(array $vars): bool
     {
         foreach ($this->operands as $operand) {
             if ($operand->getResult($vars) === true) {

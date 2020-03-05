@@ -3,12 +3,13 @@ namespace Ezweb\Workflow;
 
 class Loader
 {
-    public static function load()
+
+    public static function load(): void
     {
         self::loadProviders();
     }
 
-    private static function loadProviders()
+    private static function loadProviders(): void
     {
         // providers registrations
         $typeProviders = \Ezweb\Workflow\Providers\Type::getInstance();

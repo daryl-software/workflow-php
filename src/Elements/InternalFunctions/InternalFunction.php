@@ -7,15 +7,26 @@ namespace Ezweb\Workflow\Elements\InternalFunctions;
 abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
 {
     /**
-     * @var array<\Ezweb\Workflow\Elements\Types\Type>
+     * @var \Ezweb\Workflow\Elements\Types\Type[]
      */
     protected array $args;
 
+    /**
+     * @return string
+     */
     abstract public static function getName(): string;
 
+    /**
+     * @param mixed[] $vars
+     * @return mixed
+     */
     abstract public function getResult(array $vars);
 
-    public function addArgs(\Ezweb\Workflow\Elements\Types\Type $arg)
+    /**
+     * @param \Ezweb\Workflow\Elements\Types\Type $arg
+     * @return $this
+     */
+    public function addArgs(\Ezweb\Workflow\Elements\Types\Type $arg): self
     {
         $this->args[] = $arg;
         return $this;

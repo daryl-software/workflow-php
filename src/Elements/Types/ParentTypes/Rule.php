@@ -4,6 +4,9 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class Rule extends ParentType
 {
+    /**
+     * @var mixed
+     */
     private $return;
 
     public static function getName(): string
@@ -11,7 +14,7 @@ class Rule extends ParentType
         return 'rule';
     }
 
-    public function getResult(array $vars)
+    public function getResult(array $vars): bool
     {
         $result = true;
         foreach ($this->values as $value) {
@@ -28,6 +31,9 @@ class Rule extends ParentType
         return $instance;
     }
 
+    /**
+     * @return mixed
+     */
     public function getReturn()
     {
         return $this->return;

@@ -11,6 +11,10 @@ class InternalFunction extends ParentType
         return 'internalFunction';
     }
 
+    /**
+     * @param mixed[] $vars
+     * @return mixed
+     */
     public function getResult(array $vars)
     {
         return $this->function->getResult($vars);
@@ -25,7 +29,7 @@ class InternalFunction extends ParentType
 
     public static function loadFromConfig(\stdClass $config): self
     {
-        $instance = new static();
+        $instance = new self();
         $className = self::$internalFunctionProvider->getClass($config->name);
         $instance->function = new $className();
         return $instance;

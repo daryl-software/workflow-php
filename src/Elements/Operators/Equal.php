@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Ezweb\Workflow\Elements\Operators;
-
 
 class Equal extends Operator
 {
@@ -11,9 +9,13 @@ class Equal extends Operator
         return 'equal';
     }
 
-    public function getResult(array $vars)
+    /**
+     * @param mixed[] $vars
+     * @return bool
+     */
+    public function getResult(array $vars): bool
     {
-        if (empty($this->operands)) {
+        if (count($this->operands) === 0) {
             throw new \RuntimeException('No operands');
         }
         // get first element to initialize value to check

@@ -6,6 +6,9 @@ class Condition extends ParentType
 {
     protected \Ezweb\Workflow\Elements\Types\Condition\Operators\Operator $operator;
 
+    /**
+     * @inheritDoc
+     */
     public static function getName(): string
     {
         return 'condition';
@@ -13,7 +16,7 @@ class Condition extends ParentType
 
     public static function loadFromConfig(\stdClass $config): self
     {
-        $instance = new static();
+        $instance = new self();
         $operatorClassName = self::$typeProviders->getClass($config->operator);
         $instance->operator = new $operatorClassName();
         return $instance;
@@ -26,7 +29,11 @@ class Condition extends ParentType
         return $this;
     }
 
-    public function getResult(array $vars)
+    /**
+     * @param mixed[] $vars
+     * @return bool
+     */
+    public function getResult(array $vars): bool
     {
         return $this->operator->getResult($vars);
     }

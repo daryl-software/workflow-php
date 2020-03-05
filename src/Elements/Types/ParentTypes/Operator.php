@@ -13,7 +13,7 @@ class Operator extends ParentType
 
     public static function loadFromConfig(\stdClass $config): self
     {
-        $instance = new static();
+        $instance = new self();
         $operatorClass = self::$operatorProvider->getClass($config->operator);
         $instance->operator = new $operatorClass();
         return $instance;
@@ -26,7 +26,9 @@ class Operator extends ParentType
         return $this;
     }
 
-
+    /**
+     * @inheritDoc
+     */
     public function getResult(array $vars)
     {
         return $this->operator->getResult($vars);

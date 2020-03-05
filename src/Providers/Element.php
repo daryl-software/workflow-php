@@ -1,12 +1,23 @@
 <?php
+
 namespace Ezweb\Workflow\Providers;
 
 abstract class Element
 {
+    /**
+     * @var mixed[]
+     */
     protected static array $instance = [];
+    /**
+     * @var mixed[]
+     */
     protected array $registeredElement = [];
 
-    public abstract static function getProviderType(): string;
+    abstract public static function getProviderType(): string;
+
+    final protected function __construct()
+    {
+    }
 
     /**
      * @return static
@@ -29,7 +40,8 @@ abstract class Element
      * @param string $element
      * @return $this
      */
-    public function register(string $element): self {
+    public function register(string $element): self
+    {
         // get provider instance type
         $providerType = static::getProviderType();
         // check if we can register this type of element
@@ -45,7 +57,7 @@ abstract class Element
     }
 
     /**
-     * @param static $element
+     * @param \Ezweb\Workflow\Elements\Element $element
      * @return static
      */
     public function unregister(\Ezweb\Workflow\Elements\Element $element): self
@@ -68,10 +80,13 @@ abstract class Element
 
     /**
      * @param string $element
-     * @return string|null
+     * @return string
      */
-    public function getClass(string $element): ?string
+    public function getClass(string $element): string
     {
-        return $this->registeredElement[static::getProviderType()][$element] ?? null;
+        if (!isset($this->registeredElement[static::getProviderType()][$element])) {
+            throw new \RuntimeException('Class "' . $element . '" is not registered');
+        }
+        return $this->registeredElement[static::getProviderType()][$element];
     }
 }
