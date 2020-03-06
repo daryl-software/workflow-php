@@ -33,4 +33,9 @@ class All extends Operator
             'value' => $this->operands
         ];
     }
+
+    public function __toString()
+    {
+        return 'AND';
+    }
 }

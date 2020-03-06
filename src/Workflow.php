@@ -75,7 +75,6 @@ class Workflow implements \JsonSerializable
             default:
                 throw new \InvalidArgumentException('This behavior (' . $behavior . ') does not exist');
         }
-
     }
 
     /**
@@ -119,5 +118,10 @@ class Workflow implements \JsonSerializable
     public function toJson(int $flags = 0)
     {
         return json_encode($this, $flags);
+    }
+
+    public function __toString(): string
+    {
+        return implode(PHP_EOL, $this->getRules());
     }
 }

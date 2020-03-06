@@ -46,4 +46,9 @@ class InternalFunction extends ParentType
             'value' => $this->function->jsonSerialize()
         ];
     }
+
+    public function __toString()
+    {
+        return '('.implode(' ' . $this->function . ' ', $this->values).')';
+    }
 }

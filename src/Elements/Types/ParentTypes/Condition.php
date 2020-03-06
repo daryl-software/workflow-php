@@ -49,4 +49,9 @@ class Condition extends ParentType
             'value' => $this->values
         ];
     }
+
+    public function __toString()
+    {
+        return implode(' ' . $this->operator . ' ', $this->values);
+    }
 }

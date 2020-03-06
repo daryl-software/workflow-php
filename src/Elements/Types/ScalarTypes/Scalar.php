@@ -29,4 +29,9 @@ class Scalar extends ScalarType
             'value' => $this->scalarValue
         ];
     }
+
+    public function __toString()
+    {
+        return (string) $this->scalarValue;
+    }
 }

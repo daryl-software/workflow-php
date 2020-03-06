@@ -38,4 +38,9 @@ class Modulo extends InternalFunction
     {
         return $this->args;
     }
+
+    public function __toString()
+    {
+        return '%';
+    }
 }

@@ -50,4 +50,14 @@ class Rule extends ParentType
             'value' => $this->values
         ];
     }
+
+    public function __toString(): string
+    {
+        return implode(', ', array_map(
+            function ($v) {
+                return '(' . $v . ') -> ' . $this->return;
+            },
+            $this->values
+        ));
+    }
 }
