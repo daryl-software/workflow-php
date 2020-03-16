@@ -16,7 +16,7 @@ class Workflow implements \JsonSerializable
      * Rules to execute
      * @var array<\Ezweb\Workflow\Elements\Types\ParentTypes\Rule>
      */
-    private array $rules;
+    private array $rules = [];
 
     public function __construct(string $name)
     {
