@@ -31,4 +31,9 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
         $this->args[] = $arg;
         return $this;
     }
+    
+    public static function create()
+    {
+        return new static();
+    }
 }

@@ -19,4 +19,11 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Types\Type
         $this->operands[] = $value;
         return $this;
     }
+
+    public function attachNewOperand($classname)
+    {
+        $operand = new $classname();
+        $this->addOperand($operand);
+        return $operand;
+    }
 }

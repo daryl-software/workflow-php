@@ -35,6 +35,16 @@ class Operator extends ParentType
     }
 
     /**
+     * @param \Ezweb\Workflow\Elements\Operators\Operator $operator
+     * @return Operator
+     */
+    public function setOperator(\Ezweb\Workflow\Elements\Operators\Operator $operator): Operator
+    {
+        $this->operator = $operator;
+        return $this;
+    }
+
+    /**
      * @return mixed[]
      */
     public function jsonSerialize(): array
@@ -48,6 +58,6 @@ class Operator extends ParentType
 
     public function __toString()
     {
-        return '('.implode(' '.$this->operator.' ', $this->values).')';
+        return '(' . implode(' ' . $this->operator . ' ', $this->values) . ')';
     }
 }

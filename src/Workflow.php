@@ -124,4 +124,10 @@ class Workflow implements \JsonSerializable
     {
         return implode(PHP_EOL, $this->getRules());
     }
+
+    public function attachNewRule() {
+        $rule = \Ezweb\Workflow\Elements\Types\ParentTypes\Rule::create();
+        $this->addRule($rule);
+        return $rule;
+    }
 }

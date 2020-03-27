@@ -1,0 +1,105 @@
+{
+    "name": "Livecam",
+    "value": [
+        {
+            "type": "rule",
+            "return": 4,
+            "value": [
+                {
+                    "type": "condition",
+                    "operator": "all",
+                    "value": [
+                        {
+                            "type": "operator",
+                            "operator": "equal",
+                            "value": [
+                                {
+                                    "type": "vars",
+                                    "value": "channelId"
+                                },
+                                {
+                                    "type": "scalar",
+                                    "value": 2
+                                }
+                            ]
+                        },
+                        {
+                            "type": "operator",
+                            "operator": "equal",
+                            "value": [
+                                {
+                                    "type": "vars",
+                                    "value": "countryIso"
+                                },
+                                {
+                                    "type": "scalar",
+                                    "value": "FR"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "operator",
+                            "operator": "equal",
+                            "value": [
+                                {
+                                    "type": "internalFunction",
+                                    "name": "modulo",
+                                    "value": [
+                                        {
+                                            "type": "vars",
+                                            "value": "userId"
+                                        },
+                                        {
+                                            "type": "scalar",
+                                            "value": 2
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "scalar",
+                                    "value": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "rule",
+            "return": 1100,
+            "value": [
+                {
+                    "type": "condition",
+                    "operator": "all",
+                    "value": [
+                        {
+                            "type": "operator",
+                            "operator": "equal",
+                            "value": [
+                                {
+                                    "type": "internalFunction",
+                                    "name": "modulo",
+                                    "value": [
+                                        {
+                                            "type": "vars",
+                                            "value": "userId"
+                                        },
+                                        {
+                                            "type": "scalar",
+                                            "value": 10
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "scalar",
+                                    "value": 9
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

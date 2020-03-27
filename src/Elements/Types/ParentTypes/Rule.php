@@ -32,6 +32,16 @@ class Rule extends ParentType
     }
 
     /**
+     * @param mixed $return
+     * @return Rule
+     */
+    public function setReturn($return)
+    {
+        $this->return = $return;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getReturn()
@@ -59,5 +69,12 @@ class Rule extends ParentType
             },
             $this->values
         ));
+    }
+
+    public function attachNewCondition()
+    {
+        $condition = Condition::create();
+        $this->addValue($condition);
+        return $condition;
     }
 }

@@ -28,6 +28,16 @@ class Vars extends ScalarType
         ];
     }
 
+    /**
+     * @param mixed $scalarValue
+     * @return Vars
+     */
+    public function setScalarValue($scalarValue)
+    {
+        $this->scalarValue = $scalarValue;
+        return $this;
+    }
+
     public function __toString()
     {
         return (string) $this->scalarValue;

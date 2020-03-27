@@ -23,4 +23,6 @@ abstract class Element implements \JsonSerializable
      * @return string
      */
     abstract public static function getName(): string;
+
+    abstract public static function create();
 }

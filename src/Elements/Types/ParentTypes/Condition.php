@@ -38,6 +38,22 @@ class Condition extends ParentType
         return $this->operator->getResult($vars);
     }
 
+    public function setConditionOperator($className)
+    {
+        $this->operator = new $className();
+        return $this;
+    }
+
+    public function attachNewOperator($className):\Ezweb\Workflow\Elements\Operators\Operator
+    {
+        $o = new Operator();
+        $operator = new $className();
+        $o->setOperator($operator);
+
+        $this->addValue($o);
+        return $operator;
+    }
+
     /**
      * @return mixed[]
      */
