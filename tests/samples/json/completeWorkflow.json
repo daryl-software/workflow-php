@@ -1,0 +1,77 @@
+{
+    "name": "customWorkflow",
+    "value": [
+        {
+            "type": "rule",
+            "return": 4,
+            "value": {
+                "type": "condition",
+                "operator": "all",
+                "value": [
+                    {
+                        "type": "operator",
+                        "operator": "equal",
+                        "value": [
+                            {
+                                "type": "vars",
+                                "value": "testString"
+                            },
+                            {
+                                "type": "scalar",
+                                "value": "foo"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "operator",
+                        "operator": "equal",
+                        "value": [
+                            {
+                                "type": "internalFunction",
+                                "name": "modulo",
+                                "value": [
+                                    {
+                                        "type": "vars",
+                                        "value": "testNumber"
+                                    },
+                                    {
+                                        "type": "scalar",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "scalar",
+                                "value": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "rule",
+            "return": 69,
+            "value": {
+                "type": "condition",
+                "operator": "all",
+                "value": [
+                    {
+                        "type": "operator",
+                        "operator": "equal",
+                        "value": [
+                            {
+                                "type": "vars",
+                                "value": "testFloat"
+                            },
+                            {
+                                "type": "scalar",
+                                "value": 3.14
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
