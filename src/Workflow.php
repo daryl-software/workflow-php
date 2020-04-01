@@ -4,9 +4,10 @@ namespace Ezweb\Workflow;
 
 class Workflow implements \JsonSerializable
 {
-
     public const BEHAVIOR_ALL_MATCHES = 'allMatches';
     public const BEHAVIOR_FIRST_MATCH = 'firstMatch';
+    public const STRING_SEPARATOR = '|';
+
     /**
      * Process name
      */
@@ -122,12 +123,23 @@ class Workflow implements \JsonSerializable
 
     public function __toString(): string
     {
-        return implode(PHP_EOL, $this->getRules());
+        return implode(self::STRING_SEPARATOR, $this->getRules());
     }
 
     public function attachNewRule() {
         $rule = \Ezweb\Workflow\Elements\Types\ParentTypes\Rule::create();
         $this->addRule($rule);
         return $rule;
+    }
+
+    public function getHash(): string
+    {
+        $hashes = [];
+        $rules = $this->getRules();
+        foreach ($rules as $rule) {
+            $hashes[] = $rule->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
     }
 }

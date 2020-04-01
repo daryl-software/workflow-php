@@ -26,4 +26,23 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Types\Type
         $this->addOperand($operand);
         return $operand;
     }
+
+    /**
+     * @return \Ezweb\Workflow\Elements\Types\Type[]
+     */
+    public function getOperands(): ?array
+    {
+        return $this->operands;
+    }
+
+    public function getHash(): string
+    {
+        $hashes = [];
+        $values = $this->getOperands();
+        foreach ($values as $value) {
+            $hashes[] = $value->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
+    }
 }

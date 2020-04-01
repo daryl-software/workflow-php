@@ -17,6 +17,16 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
         return $this->scalarValue;
     }
 
+    /**
+     * @param mixed $scalarValue
+     * @return ScalarType
+     */
+    public function setScalarValue($scalarValue)
+    {
+        $this->scalarValue = $scalarValue;
+        return $this;
+    }
+
     public static function loadFromConfig(\stdClass $config): self
     {
         $instance = new static();
@@ -25,5 +35,11 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
         }
         $instance->scalarValue = $config->value;
         return $instance;
+    }
+
+    public function getHash(): string
+    {
+        // TODO: Implement getHash() method.
+        return md5(json_encode($this));
     }
 }

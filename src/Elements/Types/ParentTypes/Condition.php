@@ -24,7 +24,6 @@ class Condition extends ParentType
 
     public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
     {
-        parent::addValue($value);
         $this->operator->addOperand($value);
         return $this;
     }
@@ -46,28 +45,48 @@ class Condition extends ParentType
 
     public function attachNewOperator($className):\Ezweb\Workflow\Elements\Operators\Operator
     {
-        $o = new Operator();
-        $operator = new $className();
-        $o->setOperator($operator);
+        // we need that condition operator to be set before adding element
+        if ($this->operator === null) {
+            throw new \Exception('A condition operator must be set before add childs');
+        }
 
-        $this->addValue($o);
+        // create a operator parent type
+        $operatorType = new Operator();
+        // create that operator child
+        $operator = new $className();
+        // set parent type operator to the created one
+        $operatorType->setOperator($operator);
+        // add everything to the current condition operator
+        $this->operator->addOperand($operatorType);
+        // return the child, in which user is interested
         return $operator;
     }
 
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),
             'operator' => $this->operator::getName(),
-            'value' => $this->values
+            'value' => $this->operator->getOperands()
         ];
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return implode(' ' . $this->operator . ' ', $this->values);
+        return implode(' ' . $this->operator . ' ', $this->operator->getOperands());
+    }
+
+    /**
+     * @return array
+     */
+    public function getValues(): array
+    {
+        return $this->operator->getOperands();
     }
 }

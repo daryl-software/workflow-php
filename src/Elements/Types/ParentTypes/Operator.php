@@ -21,7 +21,6 @@ class Operator extends ParentType
 
     public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
     {
-        parent::addValue($value);
         $this->operator->addOperand($value);
         return $this;
     }
@@ -47,17 +46,22 @@ class Operator extends ParentType
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),
             'operator' => $this->operator::getName(),
-            'value' => $this->values
+            'value' => $this->operator->getOperands()
         ];
     }
 
     public function __toString()
     {
-        return '(' . implode(' ' . $this->operator . ' ', $this->values) . ')';
+        return '(' . implode(' ' . $this->operator . ' ', $this->operator->getOperands()) . ')';
+    }
+
+    public function getValues(): array
+    {
+        return $this->operator->getOperands();
     }
 }

@@ -34,14 +34,23 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
         return $this;
     }
 
-    public static function create()
+    /**
+     * @return \Ezweb\Workflow\Elements\Types\Type[]
+     */
+    public function getOperands(): ?array
+    {
+        return $this->operands;
+    }
+
+    public static function create(): self
     {
         return new static();
     }
 
-    public function attachNewScalar()
+    public function attachNewScalar($value)
     {
         $scalar = new Scalar();
+        $scalar->setScalarValue($value);
         $this->addOperand($scalar);
         return $scalar;
     }
@@ -59,5 +68,16 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
         $internalFunction = new $className();
         $this->addOperand($internalFunction);
         return $internalFunction;
+    }
+
+    public function getHash(): string
+    {
+        $hashes = [];
+        $values = $this->getOperands();
+        foreach ($values as $value) {
+            $hashes[] = $value->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
     }
 }

@@ -31,9 +31,28 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
         $this->args[] = $arg;
         return $this;
     }
-    
-    public static function create()
+
+    public static function create(): self
     {
         return new static();
+    }
+
+    /**
+     * @return \Ezweb\Workflow\Elements\Types\Type[]
+     */
+    public function getArgs(): array
+    {
+        return $this->args;
+    }
+
+    public function getHash(): string
+    {
+        $hashes = [];
+        $values = $this->getArgs();
+        foreach ($values as $value) {
+            $hashes[] = $value->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
     }
 }

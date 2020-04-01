@@ -11,7 +11,7 @@ abstract class Type extends \Ezweb\Workflow\Elements\Element
      */
     abstract public function getResult(array $vars);
 
-    public static function create()
+    public static function create(): self
     {
         return new static();
     }

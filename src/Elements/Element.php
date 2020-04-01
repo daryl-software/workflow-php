@@ -19,10 +19,25 @@ abstract class Element implements \JsonSerializable
         }
     }
 
+    public function jsonSerialize()
+    {
+        return $this->getJSONData();
+    }
+
     /**
      * @return string
      */
     abstract public static function getName(): string;
 
-    abstract public static function create();
+    abstract public static function create(): self;
+
+    /**
+     * @return string
+     */
+    abstract public function getHash(): string;
+
+    /**
+     * @return array
+     */
+    abstract public function getJSONData(): array;
 }

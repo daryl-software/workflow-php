@@ -79,7 +79,41 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $ruleMock2 = $this->generateBasicRule();
         $workflow->addRule($ruleMock);
         $workflow->addRule($ruleMock2);
-        $this->assertEquals('rule->toString' . PHP_EOL . 'rule->toString', (string)$workflow);
+        $this->assertEquals('rule->toString' . \Ezweb\Workflow\Workflow::STRING_SEPARATOR . 'rule->toString', (string)$workflow);
+    }
+
+    public function testWorkflowCreatedFromJsonOutputTheSameJson()
+    {
+        $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
+        $trimedJson = json_encode(json_decode($json));
+        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimedJson);
+        $this->assertEquals($trimedJson, json_encode($workflow));
+    }
+
+    public function testHashIsStillTheSameBetweenWorkflowWithChangedObjectsOrder()
+    {
+        $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
+        $trimedJson = json_encode(json_decode($json));
+        $jsonWithChangedOrder = file_get_contents(__DIR__ . '/samples/json/completeWorkflowChangedOrder.json');
+        $trimedJsonWithChangedOrder = json_encode(json_decode($jsonWithChangedOrder));
+        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimedJson);
+        $workflowWithChangedOrder = \Ezweb\Workflow\Parser::createFromJson($trimedJsonWithChangedOrder);
+        $this->assertEquals($workflow->getHash(), $workflowWithChangedOrder->getHash());
+    }
+
+    public function testBuildAWorkflowManually()
+    {
+        $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
+        $rule1 = $workflow->attachNewRule();
+        $rule1->setReturn(5);
+        $condition1 = $rule1->attachNewCondition();
+        $condition1->setConditionOperator(\Ezweb\Workflow\Elements\Types\Condition\Operators\All::class);
+        $operator = $condition1->attachNewOperator(\Ezweb\Workflow\Elements\Operators\Equal::class);
+        $operator->attachNewScalar(2);
+        $operator->attachNewVars('channelId');
+        $json = '{"name":"customWorkflow","value":[{"type":"rule","return":5,"value":[{"type":"condition","operator":"all","value":['
+            . '{"type":"operator","operator":"equal","value":[{"type":"scalar","value":2},{"type":"vars","value":"channelId"}]}]}]}]}';
+        $this->assertEquals($json, json_encode($workflow));
     }
 
     private function generateBasicRule()

@@ -12,7 +12,7 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
     /**
      * @return array<\Ezweb\Workflow\Elements\Types\Type>
      */
-    public function getValue(): array
+    public function getValues(): array
     {
         return $this->values;
     }
@@ -34,5 +34,16 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
     public static function loadFromConfig(\stdClass $config): self
     {
         return new static();
+    }
+
+    public function getHash(): string
+    {
+        $hashes = [];
+        $values = $this->getValues();
+        foreach ($values as $value) {
+            $hashes[] = $value->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
     }
 }

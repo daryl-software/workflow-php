@@ -26,7 +26,7 @@ class All extends Operator
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),

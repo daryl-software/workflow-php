@@ -7,7 +7,7 @@ class Scalar extends ScalarType
     /**
      * @var mixed
      */
-    public $scalarValue;
+    protected $scalarValue;
 
     public static function getName(): string
     {
@@ -22,7 +22,7 @@ class Scalar extends ScalarType
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),

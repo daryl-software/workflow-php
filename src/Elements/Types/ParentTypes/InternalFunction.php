@@ -22,7 +22,6 @@ class InternalFunction extends ParentType
 
     public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
     {
-        parent::addValue($value);
         $this->function->addArgs($value);
         return $this;
     }
@@ -38,17 +37,22 @@ class InternalFunction extends ParentType
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),
             'name' => $this->function::getName(),
-            'value' => $this->function->jsonSerialize()
+            'value' => $this->function->getJSONData()
         ];
     }
 
     public function __toString()
     {
-        return '('.implode(' ' . $this->function . ' ', $this->values).')';
+        return '('.implode(' ' . $this->function . ' ', $this->function->getArgs()).')';
+    }
+
+    public function getValues(): array
+    {
+        return $this->function->getArgs();
     }
 }

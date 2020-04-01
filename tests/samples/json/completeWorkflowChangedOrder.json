@@ -3,7 +3,7 @@
     "value": [
         {
             "type": "rule",
-            "return": 4,
+            "return": 69,
             "value": [
                 {
                     "type": "condition",
@@ -15,14 +15,26 @@
                             "value": [
                                 {
                                     "type": "vars",
-                                    "value": "testString"
+                                    "value": "testFloat"
                                 },
                                 {
                                     "type": "scalar",
-                                    "value": "foo"
+                                    "value": 3.14
                                 }
                             ]
-                        },
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "rule",
+            "return": 4,
+            "value": [
+                {
+                    "type": "condition",
+                    "operator": "all",
+                    "value": [
                         {
                             "type": "operator",
                             "operator": "equal",
@@ -46,30 +58,18 @@
                                     "value": 0
                                 }
                             ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "rule",
-            "return": 69,
-            "value": [
-                {
-                    "type": "condition",
-                    "operator": "all",
-                    "value": [
+                        },
                         {
                             "type": "operator",
                             "operator": "equal",
                             "value": [
                                 {
                                     "type": "vars",
-                                    "value": "testFloat"
+                                    "value": "testString"
                                 },
                                 {
                                     "type": "scalar",
-                                    "value": 3.14
+                                    "value": "foo"
                                 }
                             ]
                         }

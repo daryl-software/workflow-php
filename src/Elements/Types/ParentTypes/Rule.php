@@ -4,6 +4,8 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class Rule extends ParentType
 {
+    public const STRING_SEPARATOR = ', ';
+
     /**
      * @var mixed
      */
@@ -52,7 +54,7 @@ class Rule extends ParentType
     /**
      * @return mixed[]
      */
-    public function jsonSerialize(): array
+    public function getJSONData(): array
     {
         return [
             'type' => self::getName(),
@@ -63,14 +65,17 @@ class Rule extends ParentType
 
     public function __toString(): string
     {
-        return implode(', ', array_map(
+        return implode(self::STRING_SEPARATOR, array_map(
             function ($v) {
-                return '(' . $v . ') -> ' . $this->return;
+                return '(' . $v . '):' . $this->return;
             },
             $this->values
         ));
     }
 
+    /**
+     * @return Condition
+     */
     public function attachNewCondition()
     {
         $condition = Condition::create();

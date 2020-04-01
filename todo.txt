@@ -1,0 +1,5 @@
+TODO
+- Change several names
+- Add a lot of arguments checks
+- Change all docs with Array<Something> to Something[]
+- Review exception type
