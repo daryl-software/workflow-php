@@ -42,6 +42,6 @@ class Equal extends Operator
 
     public function __toString()
     {
-        return '=';
+        return '(' . implode(' = ', $this->getOperands()) . ')';
     }
 }

@@ -79,7 +79,7 @@ class Condition extends ParentType
      */
     public function __toString()
     {
-        return implode(' ' . $this->operator . ' ', $this->operator->getOperands());
+        return (string) $this->operator;
     }
 
     /**

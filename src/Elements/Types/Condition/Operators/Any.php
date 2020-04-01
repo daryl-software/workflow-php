@@ -39,6 +39,6 @@ class Any extends Operator
 
     public function __toString()
     {
-        return 'OR';
+        return implode(' OR ', $this->getOperands());
     }
 }

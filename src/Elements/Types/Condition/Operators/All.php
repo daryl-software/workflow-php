@@ -36,6 +36,6 @@ class All extends Operator
 
     public function __toString()
     {
-        return 'AND';
+        return implode(' AND ', $this->getOperands());
     }
 }

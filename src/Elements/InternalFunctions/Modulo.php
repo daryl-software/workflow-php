@@ -41,6 +41,6 @@ class Modulo extends InternalFunction
 
     public function __toString()
     {
-        return '%';
+        return  implode(' % ', $this->getArgs());
     }
 }

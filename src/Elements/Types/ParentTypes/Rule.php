@@ -67,7 +67,7 @@ class Rule extends ParentType
     {
         return implode(self::STRING_SEPARATOR, array_map(
             function ($v) {
-                return '(' . $v . '):' . $this->return;
+                return '(' . $v . '): ' . $this->return;
             },
             $this->values
         ));

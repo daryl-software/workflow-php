@@ -57,7 +57,7 @@ class Operator extends ParentType
 
     public function __toString()
     {
-        return '(' . implode(' ' . $this->operator . ' ', $this->operator->getOperands()) . ')';
+        return (string) $this->operator;
     }
 
     public function getValues(): array

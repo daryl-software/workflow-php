@@ -48,7 +48,7 @@ class InternalFunction extends ParentType
 
     public function __toString()
     {
-        return '('.implode(' ' . $this->function . ' ', $this->function->getArgs()).')';
+        return '('.$this->function.')';
     }
 
     public function getValues(): array
