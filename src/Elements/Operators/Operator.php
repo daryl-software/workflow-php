@@ -14,17 +14,6 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
     protected array $operands;
 
     /**
-     * @return string
-     */
-    abstract public static function getName(): string;
-
-    /**
-     * @param mixed[] $vars
-     * @return mixed
-     */
-    abstract public function getResult(array $vars);
-
-    /**
      * @param \Ezweb\Workflow\Elements\Types\Type $value
      * @return $this
      */

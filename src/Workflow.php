@@ -121,17 +121,26 @@ class Workflow implements \JsonSerializable
         return json_encode($this, $flags);
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         return implode(self::STRING_SEPARATOR, $this->getRules());
     }
 
+    /**
+     * @return Elements\Types\ParentTypes\Rule
+     */
     public function attachNewRule() {
         $rule = \Ezweb\Workflow\Elements\Types\ParentTypes\Rule::create();
         $this->addRule($rule);
         return $rule;
     }
 
+    /**
+     * @return string
+     */
     public function getHash(): string
     {
         $hashes = [];

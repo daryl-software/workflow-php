@@ -46,6 +46,9 @@ abstract class Element implements \JsonSerializable
      */
     abstract public static function getName(): string;
 
+    /**
+     * @return static
+     */
     abstract public static function create(): self;
 
     /**
@@ -57,4 +60,10 @@ abstract class Element implements \JsonSerializable
      * @return array
      */
     abstract public function getJSONData(): array;
+
+    /**
+     * @param mixed[] $vars
+     * @return mixed
+     */
+    abstract public function getResult(array $vars);
 }

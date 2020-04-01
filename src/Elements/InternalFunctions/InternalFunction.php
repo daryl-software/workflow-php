@@ -12,17 +12,6 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
     protected array $args;
 
     /**
-     * @return string
-     */
-    abstract public static function getName(): string;
-
-    /**
-     * @param mixed[] $vars
-     * @return mixed
-     */
-    abstract public function getResult(array $vars);
-
-    /**
      * @param \Ezweb\Workflow\Elements\Types\Type $arg
      * @return static
      */
