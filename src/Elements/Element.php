@@ -19,9 +19,12 @@ abstract class Element implements \JsonSerializable
         }
     }
 
-    public function jsonSerialize()
+    final public function jsonSerialize()
     {
-        return $this->getJSONData();
+        $data = $this->getJSONData();
+        // add object hash to json
+        $data['hash'] = $this->getHash();
+        return $data;
     }
 
     /**
