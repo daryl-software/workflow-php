@@ -38,12 +38,6 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
 
     public function getHash(): string
     {
-        $hashes = [];
-        $values = $this->getValues();
-        foreach ($values as $value) {
-            $hashes[] = $value->getHash();
-        }
-        sort($hashes, SORT_STRING);
-        return md5(implode('.', $hashes));
+        return $this->hash($this->getValues());
     }
 }

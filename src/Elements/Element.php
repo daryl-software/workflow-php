@@ -19,6 +19,20 @@ abstract class Element implements \JsonSerializable
         }
     }
 
+    /**
+     * @param self[] $elements
+     * @return string
+     */
+    protected function hash(array $elements)
+    {
+        $hashes = [];
+        foreach ($elements as $value) {
+            $hashes[] = $value->getHash();
+        }
+        sort($hashes, SORT_STRING);
+        return md5(implode('.', $hashes));
+    }
+
     final public function jsonSerialize()
     {
         $data = $this->getJSONData();

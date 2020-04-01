@@ -47,12 +47,6 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
 
     public function getHash(): string
     {
-        $hashes = [];
-        $values = $this->getArgs();
-        foreach ($values as $value) {
-            $hashes[] = $value->getHash();
-        }
-        sort($hashes, SORT_STRING);
-        return md5(implode('.', $hashes));
+        return $this->hash($this->getArgs());
     }
 }
