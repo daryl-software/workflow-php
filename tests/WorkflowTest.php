@@ -14,7 +14,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testRuleCountAfterAddingSimpleRule()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $ruleMock = $this->generateBasicRule();
+        $ruleMock = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
         $this->assertCount(1, $workflow->getRules());
     }
@@ -67,16 +67,19 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testJsonGenerationAfterAddingASimpleRule()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $ruleMock = $this->generateBasicRule();
+        $ruleMock = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
-        $this->assertSame('{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[]}]}', json_encode($workflow));
+        $this->assertSame(
+            '{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[],"hash":"deaff913552b5f34782ec69d8b4c0d49"}]}',
+            json_encode($workflow)
+        );
     }
 
     public function testGenerateStringFromSimpleWorkflow()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $ruleMock = $this->generateBasicRule();
-        $ruleMock2 = $this->generateBasicRule();
+        $ruleMock = $this->ruleBuilder->getMock();
+        $ruleMock2 = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
         $workflow->addRule($ruleMock2);
         $this->assertEquals('rule->toString' . \Ezweb\Workflow\Workflow::STRING_SEPARATOR . 'rule->toString', (string)$workflow);
@@ -85,19 +88,19 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testWorkflowCreatedFromJsonOutputTheSameJson()
     {
         $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
-        $trimedJson = json_encode(json_decode($json));
-        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimedJson);
-        $this->assertEquals($trimedJson, json_encode($workflow));
+        $trimmedJson = json_encode(json_decode($json));
+        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimmedJson);
+        $this->assertEquals($trimmedJson, json_encode($workflow));
     }
 
     public function testHashIsStillTheSameBetweenWorkflowWithChangedObjectsOrder()
     {
         $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
-        $trimedJson = json_encode(json_decode($json));
+        $trimmedJson = json_encode(json_decode($json));
         $jsonWithChangedOrder = file_get_contents(__DIR__ . '/samples/json/completeWorkflowChangedOrder.json');
-        $trimedJsonWithChangedOrder = json_encode(json_decode($jsonWithChangedOrder));
-        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimedJson);
-        $workflowWithChangedOrder = \Ezweb\Workflow\Parser::createFromJson($trimedJsonWithChangedOrder);
+        $trimmedJsonWithChangedOrder = json_encode(json_decode($jsonWithChangedOrder));
+        $workflow = \Ezweb\Workflow\Parser::createFromJson($trimmedJson);
+        $workflowWithChangedOrder = \Ezweb\Workflow\Parser::createFromJson($trimmedJsonWithChangedOrder);
         $this->assertEquals($workflow->getHash(), $workflowWithChangedOrder->getHash());
     }
 
@@ -111,16 +114,8 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $operator = $condition1->attachNewOperator(\Ezweb\Workflow\Elements\Operators\Equal::class);
         $operator->attachNewScalar(2);
         $operator->attachNewVars('channelId');
-        $json = '{"name":"customWorkflow","value":[{"type":"rule","return":5,"value":[{"type":"condition","operator":"all","value":['
-            . '{"type":"operator","operator":"equal","value":[{"type":"scalar","value":2},{"type":"vars","value":"channelId"}]}]}]}]}';
-        $this->assertEquals($json, json_encode($workflow));
-    }
-
-    private function generateBasicRule()
-    {
-        $ruleMock = $this->ruleBuilder->getMock();
-        $ruleMock->method('jsonSerialize')->willReturn(json_decode(file_get_contents(__DIR__.'/samples/json/rule.json'),true));
-        $ruleMock->method('__toString')->willReturn('rule->toString');
-        return $ruleMock;
+        $json = file_get_contents(__DIR__ . '/samples/json/manualWorkflowBuild.json');
+        $trimmedJson = json_encode(json_decode($json));
+        $this->assertEquals($trimmedJson, json_encode($workflow));
     }
 }

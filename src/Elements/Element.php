@@ -30,7 +30,7 @@ abstract class Element implements \JsonSerializable
             $hashes[] = $value->getHash();
         }
         sort($hashes, SORT_STRING);
-        return md5(implode('.', $hashes));
+        return md5(self::class.'.'.implode('.', $hashes));
     }
 
     final public function jsonSerialize()

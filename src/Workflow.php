@@ -149,6 +149,6 @@ class Workflow implements \JsonSerializable
             $hashes[] = $rule->getHash();
         }
         sort($hashes, SORT_STRING);
-        return md5(implode('.', $hashes));
+        return md5(self::class.'.'.implode('.', $hashes));
     }
 }

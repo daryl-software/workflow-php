@@ -15,13 +15,16 @@
                             "value": [
                                 {
                                     "type": "vars",
-                                    "value": "testString"
+                                    "value": "testString",
+                                    "hash": "cf1a90231c41cc5df64c67deac35def3"
                                 },
                                 {
                                     "type": "scalar",
-                                    "value": "foo"
+                                    "value": "foo",
+                                    "hash": "8a999d3f19e39ab4a9d4cfac521e466c"
                                 }
-                            ]
+                            ],
+                            "hash": "f5c86793320905c5305ffa165d0a43b2"
                         },
                         {
                             "type": "operator",
@@ -33,23 +36,30 @@
                                     "value": [
                                         {
                                             "type": "vars",
-                                            "value": "testNumber"
+                                            "value": "testNumber",
+                                            "hash": "e775afeb33aa3dbc5cb2a995085f1f9b"
                                         },
                                         {
                                             "type": "scalar",
-                                            "value": 2
+                                            "value": 2,
+                                            "hash": "f47a3c7a49a20c193a37321eaea249fc"
                                         }
-                                    ]
+                                    ],
+                                    "hash": "b2b4ce9012e1f81513a19f9b26bcd619"
                                 },
                                 {
                                     "type": "scalar",
-                                    "value": 0
+                                    "value": 0,
+                                    "hash": "71898cc238197c5f6e54cec859df1be2"
                                 }
-                            ]
+                            ],
+                            "hash": "7d07112b90f1d02352995dbbe8036d9d"
                         }
-                    ]
+                    ],
+                    "hash": "6f401bb6f6c0aa0b3ff1b86b524c40d2"
                 }
-            ]
+            ],
+            "hash": "b33d9c06b2c31127cc1b37fc01c3e25b"
         },
         {
             "type": "rule",
@@ -65,17 +75,22 @@
                             "value": [
                                 {
                                     "type": "vars",
-                                    "value": "testFloat"
+                                    "value": "testFloat",
+                                    "hash": "768cb2690d5ed20332890dd1ec30ae56"
                                 },
                                 {
                                     "type": "scalar",
-                                    "value": 3.14
+                                    "value": 3.14,
+                                    "hash": "f65235d0efcd63a44c07ab533cd204c6"
                                 }
-                            ]
+                            ],
+                            "hash": "e231881f8eb96f8f4fcd41c809dda351"
                         }
-                    ]
+                    ],
+                    "hash": "ab1f7bd352332458ca988c07977de31d"
                 }
-            ]
+            ],
+            "hash": "bafad4818a44eb7e576241b9261ce20e"
         }
     ]
 }

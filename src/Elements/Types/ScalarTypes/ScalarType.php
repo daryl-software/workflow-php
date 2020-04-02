@@ -39,6 +39,6 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
 
     public function getHash(): string
     {
-        return md5(json_encode($this));
+        return md5(json_encode($this->getJSONData()));
     }
 }

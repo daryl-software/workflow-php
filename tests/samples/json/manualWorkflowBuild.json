@@ -1,0 +1,36 @@
+{
+    "name": "customWorkflow",
+    "value": [
+        {
+            "type": "rule",
+            "return": 5,
+            "value": [
+                {
+                    "type": "condition",
+                    "operator": "all",
+                    "value": [
+                        {
+                            "type": "operator",
+                            "operator": "equal",
+                            "value": [
+                                {
+                                    "type": "scalar",
+                                    "value": 2,
+                                    "hash": "f47a3c7a49a20c193a37321eaea249fc"
+                                },
+                                {
+                                    "type": "vars",
+                                    "value": "channelId",
+                                    "hash": "5d45d39aec9a1116a6d219982189cbfc"
+                                }
+                            ],
+                            "hash": "2f49494fbc83e531ee8c06528f5cc6c9"
+                        }
+                    ],
+                    "hash": "bd8bb47cdb6aab1579f239b60db33783"
+                }
+            ],
+            "hash": "b8a86937a02f4b6a76fb90f873e9a4b9"
+        }
+    ]
+}
