@@ -9,10 +9,6 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
      */
     protected array $values;
 
-    /**
-     * @return array<\Ezweb\Workflow\Elements\Types\Type>
-     */
-
     public function getValues(): array
     {
         return $this->values;
