@@ -1,10 +1,5 @@
 <?php
-
 namespace Ezweb\Workflow\Elements\Operators;
-
-use Ezweb\Workflow\Elements\Types\ParentTypes\InternalFunction;
-use Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar;
-use Ezweb\Workflow\Elements\Types\ScalarTypes\Vars;
 
 abstract class Operator extends \Ezweb\Workflow\Elements\Element
 {
@@ -36,23 +31,35 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
         return new static();
     }
 
-    public function attachNewScalar($value)
+    /**
+     * @param $value
+     * @return \Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar
+     */
+    public function attachNewScalar($value): \Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar
     {
-        $scalar = new Scalar();
+        $scalar = new \Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar();
         $scalar->setScalarValue($value);
         $this->addOperand($scalar);
         return $scalar;
     }
 
-    public function attachNewVars($varName)
+    /**
+     * @param $varName
+     * @return \Ezweb\Workflow\Elements\Types\ScalarTypes\Vars
+     */
+    public function attachNewVars($varName): \Ezweb\Workflow\Elements\Types\ScalarTypes\Vars
     {
-        $var = new Vars();
+        $var = new \Ezweb\Workflow\Elements\Types\ScalarTypes\Vars();
         $var->setScalarValue($varName);
         $this->addOperand($var);
         return $var;
     }
 
-    public function attachNewInternalFunction($className): InternalFunction
+    /**
+     * @param $className
+     * @return \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
+     */
+    public function attachNewInternalFunction($className): \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
     {
         $internalFunction = new $className();
         $this->addOperand($internalFunction);

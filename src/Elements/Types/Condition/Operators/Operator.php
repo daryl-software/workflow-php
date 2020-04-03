@@ -20,6 +20,10 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Types\Type
         return $this;
     }
 
+    /**
+     * @param $classname
+     * @return mixed
+     */
     public function attachNewOperand($classname)
     {
         $operand = new $classname();

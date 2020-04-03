@@ -9,7 +9,7 @@ class Workflow implements \JsonSerializable
     public const STRING_SEPARATOR = '|';
 
     /**
-     * Process name
+     * Workflow name
      */
     private string $name;
 
@@ -150,5 +150,10 @@ class Workflow implements \JsonSerializable
         }
         sort($hashes, SORT_STRING);
         return md5(self::class.'.'.implode('.', $hashes));
+    }
+
+    public function getDebugString(): string
+    {
+        return $this;
     }
 }

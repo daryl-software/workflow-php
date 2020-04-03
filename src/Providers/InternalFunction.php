@@ -1,9 +1,7 @@
 <?php
-
 namespace Ezweb\Workflow\Providers;
 
-
-class InternalFunction extends Element
+class InternalFunction extends Provider
 {
     public static function getProviderType(): string
     {

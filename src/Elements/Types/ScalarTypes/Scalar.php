@@ -19,9 +19,6 @@ class Scalar extends ScalarType
         return $this->scalarValue;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
@@ -30,7 +27,7 @@ class Scalar extends ScalarType
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->scalarValue;
     }

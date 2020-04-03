@@ -1,8 +1,7 @@
 <?php
-
 namespace Ezweb\Workflow\Providers;
 
-abstract class Element
+abstract class Provider
 {
     /**
      * @var mixed[]

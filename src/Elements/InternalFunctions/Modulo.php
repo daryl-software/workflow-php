@@ -1,11 +1,9 @@
 <?php
-
 namespace Ezweb\Workflow\Elements\InternalFunctions;
 
 class Modulo extends InternalFunction
 {
-
-    public static function getType(): string
+    public static function getName(): string
     {
         return 'modulo';
     }
@@ -26,20 +24,12 @@ class Modulo extends InternalFunction
         return $firstArgs % $secondArgs;
     }
 
-    public static function getName(): string
-    {
-        return 'modulo';
-    }
-
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return $this->args;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return  implode(' % ', $this->getArgs());
     }

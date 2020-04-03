@@ -27,6 +27,10 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
         return $this;
     }
 
+    /**
+     * @param \stdClass $config
+     * @return static
+     */
     public static function loadFromConfig(\stdClass $config): self
     {
         $instance = new static();

@@ -9,10 +9,6 @@ class Equal extends Operator
         return 'equal';
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return bool
-     */
     public function getResult(array $vars): bool
     {
         if (count($this->operands) === 0) {
@@ -29,9 +25,6 @@ class Equal extends Operator
         return true;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
@@ -40,7 +33,7 @@ class Equal extends Operator
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return '(' . implode(' = ', $this->getOperands()) . ')';
     }

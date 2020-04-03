@@ -4,6 +4,9 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class InternalFunction extends ParentType
 {
+    /**
+     * @var \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
+     */
     public \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction $function;
 
     public static function getName(): string
@@ -11,10 +14,6 @@ class InternalFunction extends ParentType
         return 'internalFunction';
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return mixed
-     */
     public function getResult(array $vars)
     {
         return $this->function->getResult($vars);
@@ -34,9 +33,6 @@ class InternalFunction extends ParentType
         return $instance;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
@@ -46,7 +42,7 @@ class InternalFunction extends ParentType
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return '('.$this->function.')';
     }

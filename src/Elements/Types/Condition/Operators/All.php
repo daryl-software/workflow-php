@@ -9,10 +9,6 @@ class All extends Operator
         return 'all';
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return bool
-     */
     public function getResult(array $vars): bool
     {
         foreach ($this->operands as $operand) {
@@ -23,9 +19,6 @@ class All extends Operator
         return true;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
@@ -34,7 +27,7 @@ class All extends Operator
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return implode(' AND ', $this->getOperands());
     }

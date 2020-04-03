@@ -7,15 +7,19 @@ abstract class Element implements \JsonSerializable
     protected static \Ezweb\Workflow\Providers\Type $typeProviders;
     protected static \Ezweb\Workflow\Providers\Operator $operatorProvider;
     protected static \Ezweb\Workflow\Providers\InternalFunction $internalFunctionProvider;
+    private static bool $initialized = false;
 
     final protected function __construct()
     {
-        self::$typeProviders = \Ezweb\Workflow\Providers\Type::getInstance();
-        self::$operatorProvider = \Ezweb\Workflow\Providers\Operator::getInstance();
-        self::$internalFunctionProvider = \Ezweb\Workflow\Providers\InternalFunction::getInstance();
+        if (!self::$initialized) {
+            self::$typeProviders = \Ezweb\Workflow\Providers\Type::getInstance();
+            self::$operatorProvider = \Ezweb\Workflow\Providers\Operator::getInstance();
+            self::$internalFunctionProvider = \Ezweb\Workflow\Providers\InternalFunction::getInstance();
+            self::$initialized = true;
+        }
 
-        if (method_exists($this, 'setUp')) {
-            $this->setUp();
+        if (method_exists($this, 'initialize')) {
+            $this->initialize();
         }
     }
 
@@ -66,4 +70,9 @@ abstract class Element implements \JsonSerializable
      * @return mixed
      */
     abstract public function getResult(array $vars);
+
+    /**
+     * @return string
+     */
+    abstract public function __toString(): string;
 }
