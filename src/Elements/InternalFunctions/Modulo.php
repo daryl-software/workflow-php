@@ -1,11 +1,9 @@
 <?php
-
 namespace Ezweb\Workflow\Elements\InternalFunctions;
 
 class Modulo extends InternalFunction
 {
-
-    public static function getType(): string
+    public static function getName(): string
     {
         return 'modulo';
     }

@@ -4,6 +4,9 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class Operator extends ParentType
 {
+    /**
+     * @var \Ezweb\Workflow\Elements\Operators\Operator
+     */
     private \Ezweb\Workflow\Elements\Operators\Operator $operator;
 
     public static function getName(): string
@@ -25,9 +28,6 @@ class Operator extends ParentType
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getResult(array $vars)
     {
         return $this->operator->getResult($vars);
@@ -43,9 +43,6 @@ class Operator extends ParentType
         return $this;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [

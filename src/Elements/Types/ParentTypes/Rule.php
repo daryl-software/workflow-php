@@ -4,6 +4,9 @@ namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
 class Rule extends ParentType
 {
+    /**
+     * @var string
+     */
     public const STRING_SEPARATOR = ', ';
 
     /**
@@ -51,9 +54,6 @@ class Rule extends ParentType
         return $this->return;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [

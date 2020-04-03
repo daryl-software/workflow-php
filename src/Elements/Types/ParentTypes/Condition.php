@@ -6,9 +6,6 @@ class Condition extends ParentType
 {
     protected \Ezweb\Workflow\Elements\Types\Condition\Operators\Operator $operator;
 
-    /**
-     * @inheritDoc
-     */
     public static function getName(): string
     {
         return 'condition';
@@ -28,21 +25,25 @@ class Condition extends ParentType
         return $this;
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return bool
-     */
     public function getResult(array $vars): bool
     {
         return $this->operator->getResult($vars);
     }
 
+    /**
+     * @param $className
+     * @return $this
+     */
     public function setConditionOperator($className)
     {
         $this->operator = new $className();
         return $this;
     }
 
+    /**
+     * @param $className
+     * @return \Ezweb\Workflow\Elements\Operators\Operator
+     */
     public function attachNewOperator($className):\Ezweb\Workflow\Elements\Operators\Operator
     {
         // we need that condition operator to be set before adding element
@@ -62,9 +63,6 @@ class Condition extends ParentType
         return $operator;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
@@ -79,9 +77,6 @@ class Condition extends ParentType
         return (string) $this->operator;
     }
 
-    /**
-     * @return array
-     */
     public function getValues(): array
     {
         return $this->operator->getOperands();

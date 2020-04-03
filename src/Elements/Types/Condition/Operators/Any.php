@@ -11,10 +11,6 @@ class Any extends Operator
         return 'any';
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return bool
-     */
     public function getResult(array $vars): bool
     {
         foreach ($this->operands as $operand) {
@@ -25,9 +21,6 @@ class Any extends Operator
         return false;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [

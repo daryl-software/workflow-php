@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Ezweb\Workflow\Elements\InternalFunctions;
 
 

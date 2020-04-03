@@ -9,7 +9,7 @@ class Workflow implements \JsonSerializable
     public const STRING_SEPARATOR = '|';
 
     /**
-     * Process name
+     * Workflow name
      */
     private string $name;
 
