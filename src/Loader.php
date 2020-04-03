@@ -24,6 +24,11 @@ class Loader
 
         $operatorProvider = \Ezweb\Workflow\Providers\Operator::getInstance();
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Equal::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Not::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\GreaterThan::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\GreaterOrEqualThan::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessThan::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessOrEqualThan::class);
 
         $internalFunctionProvider = \Ezweb\Workflow\Providers\InternalFunction::getInstance();
         $internalFunctionProvider->register(\Ezweb\Workflow\Elements\InternalFunctions\Modulo::class);
