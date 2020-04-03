@@ -4,14 +4,21 @@ namespace Ezweb\Workflow;
 
 class Parser
 {
-    private static function setUp(): void
+    /**
+     *
+     */
+    private static function initialize(): void
     {
         Loader::load();
     }
 
+    /**
+     * @param string $json
+     * @return Workflow
+     */
     public static function createFromJson(string $json): Workflow
     {
-        self::setUp();
+        self::initialize();
         $decodedJson = json_decode($json);
         if ($decodedJson === false) {
             throw new \RuntimeException('Invalid JSON: ' . json_last_error_msg());
