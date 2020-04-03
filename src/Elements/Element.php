@@ -70,4 +70,9 @@ abstract class Element implements \JsonSerializable
      * @return mixed
      */
     abstract public function getResult(array $vars);
+
+    /**
+     * @return string
+     */
+    abstract public function __toString(): string;
 }

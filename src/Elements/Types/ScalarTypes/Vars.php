@@ -28,7 +28,7 @@ class Vars extends ScalarType
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->scalarValue;
     }

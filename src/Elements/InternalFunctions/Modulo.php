@@ -26,20 +26,12 @@ class Modulo extends InternalFunction
         return $firstArgs % $secondArgs;
     }
 
-    public static function getName(): string
-    {
-        return 'modulo';
-    }
-
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return $this->args;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return  implode(' % ', $this->getArgs());
     }

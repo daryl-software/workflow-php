@@ -36,8 +36,7 @@ class Any extends Operator
         ];
     }
 
-
-    public function __toString()
+    public function __toString(): string
     {
         return implode(' OR ', $this->getOperands());
     }

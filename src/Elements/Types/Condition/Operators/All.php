@@ -34,7 +34,7 @@ class All extends Operator
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return implode(' AND ', $this->getOperands());
     }

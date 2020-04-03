@@ -46,7 +46,7 @@ class InternalFunction extends ParentType
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return '('.$this->function.')';
     }
