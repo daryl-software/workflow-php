@@ -38,7 +38,7 @@ class InternalFunction extends ParentType
         return [
             'type' => self::getName(),
             'name' => $this->function::getName(),
-            'value' => $this->function->getJSONData()
+            'value' => $this->function->getArgs()
         ];
     }
 

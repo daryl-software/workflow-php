@@ -32,6 +32,11 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
         return $this->args;
     }
 
+    final public function getJSONData(): array
+    {
+        return null;
+    }
+
     public function getHash(): string
     {
         return $this->hash($this->getArgs());
