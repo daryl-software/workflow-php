@@ -19,7 +19,7 @@ class Scalar extends ScalarType
         return $this->scalarValue;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

@@ -21,7 +21,7 @@ class Any extends Operator
         return false;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

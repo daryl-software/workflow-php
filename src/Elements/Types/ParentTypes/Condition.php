@@ -63,7 +63,7 @@ class Condition extends ParentType
         return $operator;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

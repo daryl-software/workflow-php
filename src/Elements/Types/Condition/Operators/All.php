@@ -19,7 +19,7 @@ class All extends Operator
         return true;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

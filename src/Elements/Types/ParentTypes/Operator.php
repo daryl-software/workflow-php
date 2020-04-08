@@ -43,7 +43,7 @@ class Operator extends ParentType
         return $this;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),
