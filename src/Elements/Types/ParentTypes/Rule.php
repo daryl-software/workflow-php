@@ -54,7 +54,7 @@ class Rule extends ParentType
         return $this->return;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

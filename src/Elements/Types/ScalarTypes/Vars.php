@@ -20,7 +20,7 @@ class Vars extends ScalarType
     /**
      * @return mixed[]
      */
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),

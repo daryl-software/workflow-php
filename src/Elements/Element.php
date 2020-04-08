@@ -63,7 +63,7 @@ abstract class Element implements \JsonSerializable
     /**
      * @return array
      */
-    abstract public function getJSONData(): array;
+    abstract public function getJSONData(): ?array;
 
     /**
      * @param mixed[] $vars

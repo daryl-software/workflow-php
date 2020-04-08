@@ -33,7 +33,7 @@ class InternalFunction extends ParentType
         return $instance;
     }
 
-    public function getJSONData(): array
+    public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),
