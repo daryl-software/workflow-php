@@ -15,18 +15,10 @@ class LessThan extends Operator
      */
     public function getResult(array $vars): bool
     {
-        if (count($this->operands) === 0) {
-            throw new \RuntimeException('No operands');
+        if (count($this->operands) !== 2) {
+            throw new \RuntimeException('Require only 2 operands');
         }
-        // get first element to initialize value to check
-        $value = $this->operands[0]->getResult($vars);
-        // first iteration will be always true, due to upper line
-        foreach ($this->operands as $iterationNumber => $operand) {
-            if ($value < $operand->getResult($vars)) {
-                return false;
-            }
-        }
-        return true;
+        return $this->operands[0]->getResult($vars) < $this->operands[1]->getResult($vars);
     }
 
     /**

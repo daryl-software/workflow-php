@@ -15,11 +15,11 @@ class Not extends Operator
      */
     public function getResult(array $vars): bool
     {
-        if (count($this->operands) === 0) {
-            throw new \RuntimeException('No operands');
+        if (count($this->operands) !== 1) {
+            throw new \RuntimeException('Require only 1 operand');
         }
         // get first element to initialize value to check
-        return !$this->operands[0]->getResult($vars);
+        return !(bool)$this->operands[0]->getResult($vars);
     }
 
     /**
