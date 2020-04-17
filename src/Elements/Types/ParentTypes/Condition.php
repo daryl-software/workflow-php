@@ -25,9 +25,9 @@ class Condition extends ParentType
         return $this;
     }
 
-    public function getResult(array $vars): bool
+    protected function getResult(array $vars, array $childrenValues)
     {
-        return $this->operator->getResult($vars);
+        return $this->operator->getResult($vars, $childrenValues);
     }
 
     /**

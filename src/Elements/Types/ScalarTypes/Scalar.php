@@ -14,7 +14,7 @@ class Scalar extends ScalarType
         return 'scalar';
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
         return $this->scalarValue;
     }

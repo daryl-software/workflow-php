@@ -67,9 +67,10 @@ abstract class Element implements \JsonSerializable
 
     /**
      * @param mixed[] $vars
+     * @param array $childrenValues
      * @return mixed
      */
-    abstract public function getResult(array $vars);
+    abstract protected function getResult(array $vars, array $childrenValues);
 
     /**
      * @return string

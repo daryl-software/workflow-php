@@ -28,9 +28,9 @@ class Operator extends ParentType
         return $this;
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
-        return $this->operator->getResult($vars);
+        return $this->operator->getResult($vars, $childrenValues);
     }
 
     /**

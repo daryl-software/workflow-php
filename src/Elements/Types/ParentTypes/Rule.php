@@ -19,14 +19,15 @@ class Rule extends ParentType
         return 'rule';
     }
 
-    public function getResult(array $vars): bool
+    protected function getResult(array $vars, array $childrenValues)
     {
-        $result = true;
-        foreach ($this->values as $value) {
+        foreach ($childrenValues as $childrenValue) {
             // is result still valid ?
-            $result = $result === $value->getResult($vars);
+            if ($childrenValue === false) {
+                return false;
+            }
         }
-        return $result;
+        return true;
     }
 
     public static function loadFromConfig(\stdClass $config): ParentType
@@ -81,5 +82,10 @@ class Rule extends ParentType
         $condition = Condition::create();
         $this->addValue($condition);
         return $condition;
+    }
+
+    public function run($vars)
+    {
+        return $this->runThroughTree($vars);
     }
 }

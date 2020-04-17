@@ -87,7 +87,7 @@ class Workflow implements \JsonSerializable
         $rules = $this->getRules();
         $results = [];
         foreach ($rules as $rule) {
-            $result = $rule->getResult($vars);
+            $result = $rule->run($vars);
             if ($result) {
                 $results[] = $rule->getReturn();
             }
@@ -102,8 +102,9 @@ class Workflow implements \JsonSerializable
     public function getFirstMatch(array $vars)
     {
         $rules = $this->getRules();
+
         foreach ($rules as $rule) {
-            $result = $rule->getResult($vars);
+            $result = $rule->run($vars);
             if ($result) {
                 return $rule->getReturn();
             }

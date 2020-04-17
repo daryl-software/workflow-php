@@ -37,4 +37,20 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
     {
         return $this->hash($this->getValues());
     }
+
+    final protected function runThroughTree($vars)
+    {
+        $childsValues = [];
+        foreach ($this->getValues() as $value) {
+            // if (!$value->isValid($vars)) {
+            //     throw new \Exception('toto');
+            // }
+            if ($value instanceof \Ezweb\Workflow\Elements\Types\ScalarTypes\ScalarType) {
+                $childsValues[] = $value->getResult($vars, []);
+            } else {
+                $childsValues[] = $value->runThroughTree($vars);
+            }
+        }
+        return $this->getResult($vars, $childsValues);
+    }
 }
