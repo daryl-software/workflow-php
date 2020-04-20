@@ -8,24 +8,34 @@ class Modulo extends InternalFunction
         return 'modulo';
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
-        if (count($this->args) !== 2) {
-            throw new \RuntimeException('Modulo must have only 2 arguments');
-        }
-
-        $firstArgs = $this->args[0]->getResult($vars);
-        $secondArgs = $this->args[1]->getResult($vars);
-
-        if (!is_numeric($firstArgs) || !is_numeric($secondArgs)) {
-            throw new \RuntimeException('Modulo arguments must be numeric');
-        }
+        $firstArgs = $childrenValues[0];
+        $secondArgs = $childrenValues[1];
 
         return $firstArgs % $secondArgs;
     }
 
     public function __toString(): string
     {
-        return  implode(' % ', $this->getArgs());
+        return implode(' % ', $this->getArgs());
+    }
+
+    protected function isValid(): bool
+    {
+        // we need 2 args for this function to work properly
+        if (count($this->args) !== 2) {
+            return false;
+        }
+
+        // get args values (ignore defined keys)
+        $args = array_values($this->getArgs());
+
+        // both args must be numeric
+        if (!is_numeric($args[0]) || !is_numeric($args[1])) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -7,7 +7,7 @@ abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
     /**
      * @var \Ezweb\Workflow\Elements\Types\Type[]
      */
-    protected array $args;
+    protected array $args = [];
 
     /**
      * @param \Ezweb\Workflow\Elements\Types\Type $arg

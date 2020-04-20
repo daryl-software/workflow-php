@@ -6,7 +6,7 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
     /**
      * @var array<\Ezweb\Workflow\Elements\Types\Type>
      */
-    protected array $operands;
+    protected array $operands = [];
 
     /**
      * @param \Ezweb\Workflow\Elements\Types\Type $value

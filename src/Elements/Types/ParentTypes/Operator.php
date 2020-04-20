@@ -28,9 +28,9 @@ class Operator extends ParentType
         return $this;
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
-        return $this->operator->getResult($vars);
+        return $this->operator->getResult($vars, $childrenValues);
     }
 
     /**
@@ -60,5 +60,10 @@ class Operator extends ParentType
     public function getValues(): array
     {
         return $this->operator->getOperands();
+    }
+
+    protected function isValid(): bool
+    {
+        return !empty($this->operator);
     }
 }

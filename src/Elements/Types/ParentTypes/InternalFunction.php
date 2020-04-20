@@ -14,9 +14,9 @@ class InternalFunction extends ParentType
         return 'internalFunction';
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
-        return $this->function->getResult($vars);
+        return $this->function->getResult($vars, $childrenValues);
     }
 
     public function addValue(\Ezweb\Workflow\Elements\Types\Type $value): ParentType
@@ -50,5 +50,10 @@ class InternalFunction extends ParentType
     public function getValues(): array
     {
         return $this->function->getArgs();
+    }
+
+    protected function isValid(): bool
+    {
+        return !empty($this->function);
     }
 }

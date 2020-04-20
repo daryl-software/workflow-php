@@ -9,16 +9,13 @@ class Equal extends Operator
         return 'equal';
     }
 
-    public function getResult(array $vars): bool
+    protected function getResult(array $vars, array $childrenValues)
     {
-        if (count($this->operands) === 0) {
-            throw new \RuntimeException('No operands');
-        }
         // get first element to initialize value to check
-        $valueToBeEquals = $this->operands[0]->getResult($vars);
+        $valueToBeEquals = $childrenValues[0];
         // first iteration will be always true, due to upper line
-        foreach ($this->operands as $iterationNumber => $operand) {
-            if ($valueToBeEquals != $operand->getResult($vars)) {
+        foreach ($childrenValues as $childrenValue) {
+            if ($valueToBeEquals != $childrenValue) {
                 return false;
             }
         }
@@ -29,12 +26,29 @@ class Equal extends Operator
     {
         return [
             'type' => self::getName(),
-            'value' => $this->operands
+            'value' => $this->getOperands()
         ];
     }
 
     public function __toString(): string
     {
         return '(' . implode(' = ', $this->getOperands()) . ')';
+    }
+
+    protected function isValid(): bool
+    {
+        $operands = $this->getOperands();
+        if (empty($operands)) {
+            return false;
+        }
+
+        // every operands must be scalar
+        foreach ($operands as $operand) {
+            if (!is_scalar($operand)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

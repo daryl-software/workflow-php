@@ -9,31 +9,31 @@ class LessThan extends Operator
         return 'greaterThan';
     }
 
-    /**
-     * @param mixed[] $vars
-     * @return bool
-     */
-    public function getResult(array $vars): bool
+    protected function getResult(array $vars, array $childrenValues)
     {
-        if (count($this->operands) !== 2) {
-            throw new \RuntimeException('Require only 2 operands');
-        }
-        return $this->operands[0]->getResult($vars) < $this->operands[1]->getResult($vars);
+        return $childrenValues[0] < $childrenValues[1];
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getJSONData(): array
     {
         return [
             'type' => self::getName(),
-            'value' => $this->operands
+            'value' => $this->getOperands()
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return  implode(' < ', $this->getOperands());
+    }
+
+    protected function isValid(): bool
+    {
+        // we must have 2 operands for this operator
+        if (count($this->getOperands()) !== 2) {
+            return false;
+        }
+
+        return true;
     }
 }

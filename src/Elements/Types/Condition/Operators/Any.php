@@ -11,10 +11,10 @@ class Any extends Operator
         return 'any';
     }
 
-    public function getResult(array $vars): bool
+    protected function getResult(array $vars, array $childrenValues)
     {
-        foreach ($this->operands as $operand) {
-            if ($operand->getResult($vars) === true) {
+        foreach ($childrenValues as $childrenValue) {
+            if ($childrenValue === true) {
                 return true;
             }
         }
@@ -25,12 +25,17 @@ class Any extends Operator
     {
         return [
             'type' => self::getName(),
-            'value' => $this->operands
+            'value' => $this->getOperands()
         ];
     }
 
     public function __toString(): string
     {
         return implode(' OR ', $this->getOperands());
+    }
+
+    protected function isValid(): bool
+    {
+        return !empty($this->getOperands());
     }
 }

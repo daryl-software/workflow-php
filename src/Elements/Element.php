@@ -67,12 +67,16 @@ abstract class Element implements \JsonSerializable
 
     /**
      * @param mixed[] $vars
+     * @param array $childrenValues
      * @return mixed
      */
-    abstract public function getResult(array $vars);
+    abstract protected function getResult(array $vars, array $childrenValues);
 
     /**
      * @return string
      */
     abstract public function __toString(): string;
+
+    // Is this Element call valid?
+    abstract protected function isValid(): bool;
 }
