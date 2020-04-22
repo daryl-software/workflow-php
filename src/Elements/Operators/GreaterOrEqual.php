@@ -2,16 +2,16 @@
 
 namespace Ezweb\Workflow\Elements\Operators;
 
-class Not extends Operator
+class GreaterOrEqual extends Operator
 {
     public static function getName(): string
     {
-        return 'not';
+        return 'greaterOrEqualThan';
     }
 
-    protected function getResult(array $vars, array $childrenValues)
+    protected function getResult(array $vars, array $childrenValues): bool
     {
-        return !(bool) $childrenValues[0];
+        return $childrenValues[0] >= $childrenValues[1];
     }
 
     public function getJSONData(): array
@@ -24,13 +24,13 @@ class Not extends Operator
 
     public function __toString(): string
     {
-        return 'NOT(' . $this->getOperands()[0] . ')';
+        return  implode(' >= ', $this->getOperands());
     }
 
     protected function isValid(): bool
     {
-        // we must have a single operand for this operator
-        if (count($this->getOperands()) !== 1) {
+        // we must have 2 operands for this operator
+        if (count($this->getOperands()) !== 2) {
             return false;
         }
 

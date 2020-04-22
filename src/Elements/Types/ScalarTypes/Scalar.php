@@ -14,21 +14,26 @@ class Scalar extends ScalarType
         return 'scalar';
     }
 
-    public function getResult(array $vars)
+    protected function getResult(array $vars, array $childrenValues)
     {
-        return $this->scalarValue;
+        return $this->getValue();
     }
 
     public function getJSONData(): ?array
     {
         return [
             'type' => self::getName(),
-            'value' => $this->scalarValue
+            'value' => $this->getValue()
         ];
     }
 
     public function __toString(): string
     {
-        return (string) $this->scalarValue;
+        return (string) $this->getValue();
+    }
+
+    protected function isValid(): bool
+    {
+        return $this->getValue() !== null;
     }
 }
