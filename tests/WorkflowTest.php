@@ -55,13 +55,13 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testBaseJsonGeneration()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $this->assertSame('{"name":"customWorkflow","value":[]}', json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString('{"name":"customWorkflow","value":[]}', json_encode($workflow));
     }
 
     public function testBaseJsonGenerationThroughTojsonMethod()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $this->assertSame('{"name":"customWorkflow","value":[]}', $workflow->toJson());
+        $this->assertJsonStringEqualsJsonString('{"name":"customWorkflow","value":[]}', $workflow->toJson());
     }
 
     public function testJsonGenerationAfterAddingASimpleRule()
@@ -69,7 +69,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
         $ruleMock = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
-        $this->assertSame(
+        $this->assertJsonStringEqualsJsonString(
             '{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[],"hash":"deaff913552b5f34782ec69d8b4c0d49"}]}',
             json_encode($workflow)
         );
@@ -90,7 +90,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
         $trimmedJson = json_encode(json_decode($json));
         $workflow = \Ezweb\Workflow\Parser::createFromJson($trimmedJson);
-        $this->assertSame($trimmedJson, json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString($trimmedJson, json_encode($workflow));
     }
 
     public function testHashIsStillTheSameBetweenWorkflowWithChangedObjectsOrder()
@@ -116,6 +116,6 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $operator->attachNewVars('channelId');
         $json = file_get_contents(__DIR__ . '/samples/json/manualWorkflowBuild.json');
         $trimmedJson = json_encode(json_decode($json));
-        $this->assertSame($trimmedJson, json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString($trimmedJson, json_encode($workflow));
     }
 }
