@@ -2,16 +2,16 @@
 
 namespace Ezweb\Workflow\Elements\Types\ParentTypes;
 
-class InternalFunction extends ParentType
+class Action extends ParentType
 {
     /**
-     * @var \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
+     * @var \Ezweb\Workflow\Elements\Actions\Action
      */
-    public \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction $function;
+    public \Ezweb\Workflow\Elements\Actions\Action $function;
 
     public static function getName(): string
     {
-        return 'internalFunction';
+        return 'action';
     }
 
     protected function getResult(array $vars, array $childrenValues)
@@ -28,7 +28,7 @@ class InternalFunction extends ParentType
     public static function loadFromConfig(\stdClass $config): self
     {
         $instance = new self();
-        $className = self::$internalFunctionProvider->getClass($config->name);
+        $className = self::$actionProvider->getClass($config->name);
         $instance->function = new $className();
         return $instance;
     }

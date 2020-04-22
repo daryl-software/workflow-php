@@ -1,7 +1,7 @@
 <?php
-namespace Ezweb\Workflow\Elements\InternalFunctions;
+namespace Ezweb\Workflow\Elements\Actions\Arithmetics;
 
-class Modulo extends InternalFunction
+class Modulo extends \Ezweb\Workflow\Elements\Actions\Action
 {
     public static function getName(): string
     {

@@ -1,8 +1,8 @@
 <?php
-namespace Ezweb\Workflow\Elements\InternalFunctions;
+namespace Ezweb\Workflow\Elements\Actions;
 
 
-abstract class InternalFunction extends \Ezweb\Workflow\Elements\Element
+abstract class Action extends \Ezweb\Workflow\Elements\Element
 {
     /**
      * @var \Ezweb\Workflow\Elements\Types\Type[]

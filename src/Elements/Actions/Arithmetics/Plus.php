@@ -1,37 +1,33 @@
 <?php
-namespace Ezweb\Workflow\Elements\InternalFunctions;
+namespace Ezweb\Workflow\Elements\Actions\Arithmetics;
 
-class Minus extends InternalFunction
+class Plus extends \Ezweb\Workflow\Elements\Actions\Action
 {
     public static function getName(): string
     {
-        return 'minus';
+        return 'plus';
     }
 
     protected function getResult(array $vars, array $childrenValues)
     {
-        $result = array_shift($childrenValues);
-        foreach ($childrenValues as $childValue) {
-            $result -= $childValue;
-        }
-        return $result;
+        return array_sum($childrenValues);
     }
 
     public function __toString(): string
     {
-        return implode(' - ', $this->getArgs());
+        return implode(' + ', $this->getArgs());
     }
 
     protected function isValid(): bool
     {
         $args = $this->getArgs();
 
-        // we need args
+        // must has args
         if (empty($args)) {
             return false;
         }
 
-        // and only numeric
+        // and all numeric
         foreach ($args as $arg) {
             if (!is_numeric($arg)) {
                 return false;

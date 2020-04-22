@@ -57,13 +57,13 @@ abstract class Operator extends \Ezweb\Workflow\Elements\Element
 
     /**
      * @param $className
-     * @return \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
+     * @return \Ezweb\Workflow\Elements\Actions\Action
      */
-    public function attachNewInternalFunction($className): \Ezweb\Workflow\Elements\InternalFunctions\InternalFunction
+    public function attachNewAction($className): \Ezweb\Workflow\Elements\Actions\Action
     {
-        $internalFunction = new $className();
-        $this->addOperand($internalFunction);
-        return $internalFunction;
+        $action = new $className();
+        $this->addOperand($action);
+        return $action;
     }
 
     public function getHash(): string

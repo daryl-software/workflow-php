@@ -20,5 +20,10 @@
         "phpstan/phpstan-strict-rules": "^0.12.2",
         "phpstan/extension-installer": "^1.0",
         "phpunit/phpunit": "^9.0"
+    },
+    "scripts": {
+        "tests": "vendor/bin/phpunit",
+        "phpstan": "vendor/bin/phpstan analyse",
+
     }
 }

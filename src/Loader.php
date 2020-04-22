@@ -1,9 +1,9 @@
 <?php
+
 namespace Ezweb\Workflow;
 
 class Loader
 {
-
     public static function load(): void
     {
         self::loadProviders();
@@ -16,9 +16,9 @@ class Loader
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Rule::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Operator::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Condition::class);
+        $typeProviders->register(\Ezweb\Workflow\Elements\Types\ParentTypes\Action::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\ScalarTypes\Vars::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar::class);
-        $typeProviders->register(\Ezweb\Workflow\Elements\Types\ParentTypes\InternalFunction::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\Condition\Operators\All::class);
         $typeProviders->register(\Ezweb\Workflow\Elements\Types\Condition\Operators\Any::class);
 
@@ -30,7 +30,12 @@ class Loader
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessThan::class);
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessOrEqual::class);
 
-        $internalFunctionProvider = \Ezweb\Workflow\Providers\InternalFunction::getInstance();
-        $internalFunctionProvider->register(\Ezweb\Workflow\Elements\InternalFunctions\Modulo::class);
+        $actionProvider = \Ezweb\Workflow\Providers\Action::getInstance();
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Modulo::class);
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::class);
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Minus::class);
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Plus::class);
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::class);
+        $actionProvider->register(\Ezweb\Workflow\Elements\Actions\Arithmetics\Times::class);
     }
 }

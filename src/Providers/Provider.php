@@ -46,7 +46,7 @@ abstract class Provider
         // check if we can register this type of element
         if (!is_a($element, $providerType, true)) {
             throw new \InvalidArgumentException(
-                'To register an ' . $providerType . ', you must extends ' . $providerType
+                'To register an ' . $element . ', you must extends ' . $providerType
             );
         }
         // then register it

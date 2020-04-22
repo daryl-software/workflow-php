@@ -3,3 +3,4 @@ TODO
 - Add a lot of arguments checks
 - Change all docs with Array<Something> to Something[]
 - Review exception type
+- Phpstan

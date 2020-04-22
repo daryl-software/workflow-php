@@ -45,7 +45,7 @@
                             "operator": "equal",
                             "value": [
                                 {
-                                    "type": "internalFunction",
+                                    "type": "action",
                                     "name": "modulo",
                                     "value": [
                                         {
