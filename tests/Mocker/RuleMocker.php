@@ -1,8 +1,8 @@
 <?php
 
-namespace Ezweb\Workflow\Test\Builder;
+namespace Ezweb\Workflow\Test\Mocker;
 
-class RuleBuilder extends \PHPUnit\Framework\TestCase
+class RuleMocker extends \PHPUnit\Framework\TestCase
 {
     private const NAME = 'rule';
     private const VALUES = [];

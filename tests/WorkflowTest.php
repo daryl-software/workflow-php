@@ -4,11 +4,11 @@ namespace Ezweb\Workflow\Test;
 
 class WorkflowTest extends \PHPUnit\Framework\TestCase
 {
-    private \Ezweb\Workflow\Test\Builder\RuleBuilder $ruleBuilder;
+    private \Ezweb\Workflow\Test\Mocker\RuleMocker $ruleBuilder;
 
     public function setUp(): void
     {
-        $this->ruleBuilder = new \Ezweb\Workflow\Test\Builder\RuleBuilder();
+        $this->ruleBuilder = new \Ezweb\Workflow\Test\Mocker\RuleMocker();
     }
 
     public function testRuleCountAfterAddingSimpleRule()

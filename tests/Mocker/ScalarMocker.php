@@ -1,7 +1,7 @@
 <?php
-namespace Ezweb\Workflow\Test\Builder;
+namespace Ezweb\Workflow\Test\Mocker;
 
-class ScalarBuilder extends \PHPUnit\Framework\TestCase {
+class ScalarMocker extends \PHPUnit\Framework\TestCase {
 
     public function getMockWithValue($value): \Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar
     {

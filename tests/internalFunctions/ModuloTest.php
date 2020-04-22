@@ -3,11 +3,11 @@ namespace Ezweb\Workflow\Test\internalFunctions;
 
 class ModuloTest extends \PHPUnit\Framework\TestCase
 {
-    private \Ezweb\Workflow\Test\Builder\ScalarBuilder $scalarBuilder;
+    private \Ezweb\Workflow\Test\Mocker\ScalarMocker $scalarBuilder;
 
     protected function setUp(): void
     {
-        $this->scalarBuilder = new \Ezweb\Workflow\Test\Builder\ScalarBuilder();
+        $this->scalarBuilder = new \Ezweb\Workflow\Test\Mocker\ScalarMocker();
     }
 
     public function testCreateANewModuloElement()
