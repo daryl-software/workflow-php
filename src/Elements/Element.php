@@ -6,7 +6,7 @@ abstract class Element implements \JsonSerializable
 {
     protected static \Ezweb\Workflow\Providers\Type $typeProviders;
     protected static \Ezweb\Workflow\Providers\Operator $operatorProvider;
-    protected static \Ezweb\Workflow\Providers\InternalFunction $internalFunctionProvider;
+    protected static \Ezweb\Workflow\Providers\Action $actionProvider;
     private static bool $initialized = false;
 
     final protected function __construct()
@@ -14,7 +14,7 @@ abstract class Element implements \JsonSerializable
         if (!self::$initialized) {
             self::$typeProviders = \Ezweb\Workflow\Providers\Type::getInstance();
             self::$operatorProvider = \Ezweb\Workflow\Providers\Operator::getInstance();
-            self::$internalFunctionProvider = \Ezweb\Workflow\Providers\InternalFunction::getInstance();
+            self::$actionProvider = \Ezweb\Workflow\Providers\Action::getInstance();
             self::$initialized = true;
         }
 
@@ -34,7 +34,7 @@ abstract class Element implements \JsonSerializable
             $hashes[] = $value->getHash();
         }
         sort($hashes, SORT_STRING);
-        return md5(self::class.'.'.implode('.', $hashes));
+        return md5($this->getName() . '.' . implode('.', $hashes));
     }
 
     final public function jsonSerialize()

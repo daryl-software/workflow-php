@@ -2,6 +2,10 @@
 
 namespace Ezweb\Workflow\Test;
 
+use Ezweb\Workflow\Elements\Operators\Equal;
+use Ezweb\Workflow\Elements\Types\Condition\Operators\All;
+use Ezweb\Workflow\Workflow;
+
 class WorkflowTest extends \PHPUnit\Framework\TestCase
 {
     private \Ezweb\Workflow\Test\Mocker\RuleMocker $ruleBuilder;
@@ -67,10 +71,9 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testJsonGenerationAfterAddingASimpleRule()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $ruleMock = $this->ruleBuilder->getMock();
-        $workflow->addRule($ruleMock);
-        $this->assertJsonStringEqualsJsonString(
-            '{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[],"hash":"deaff913552b5f34782ec69d8b4c0d49"}]}',
+        $workflow->attachNewRule()->setReturn(4);
+        $this->assertSame(
+            '{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[],"hash":"0b78c5a9fa638db8297b8f6148e8eadf"}]}',
             json_encode($workflow)
         );
     }

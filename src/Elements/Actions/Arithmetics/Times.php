@@ -1,25 +1,31 @@
 <?php
-namespace Ezweb\Workflow\Elements\InternalFunctions;
+namespace Ezweb\Workflow\Elements\Actions\Arithmetics;
 
-class Divide extends InternalFunction
+class Times extends \Ezweb\Workflow\Elements\Actions\Action
 {
     public static function getName(): string
     {
-        return 'divide';
+        return 'times';
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getResult(array $vars, array $childrenValues)
     {
-        $result = array_shift($childrenValues);
+        $result = 1;
         foreach ($childrenValues as $childValue) {
-            $result /= $childValue;
+            $result *= $childValue;
         }
         return $result;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function __toString(): string
     {
-        return implode(' / ', $this->getArgs());
+        return implode(' x ', $this->getArgs());
     }
 
     protected function isValid(): bool
