@@ -4,11 +4,11 @@ namespace Ezweb\Workflow\Test;
 
 class WorkflowTest extends \PHPUnit\Framework\TestCase
 {
-    private \Ezweb\Workflow\Test\Builder\RuleBuilder $ruleBuilder;
+    private \Ezweb\Workflow\Test\Mocker\RuleMocker $ruleBuilder;
 
     public function setUp(): void
     {
-        $this->ruleBuilder = new \Ezweb\Workflow\Test\Builder\RuleBuilder();
+        $this->ruleBuilder = new \Ezweb\Workflow\Test\Mocker\RuleMocker();
     }
 
     public function testRuleCountAfterAddingSimpleRule()
@@ -27,7 +27,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
             'testNumber' => 2,
             'testFloat' => 3.14
         ], \Ezweb\Workflow\Workflow::BEHAVIOR_ALL_MATCHES);
-        $this->assertEquals([4,69], $results);
+        $this->assertSame([4,69], $results);
     }
 
     public function testResultShouldReturnFirstResultOnlyAndShouldNotBeAnArrayWhenUsingFirstMatchBehavior()
@@ -38,7 +38,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
             'testNumber' => 2,
             'testFloat' => 3.14
         ], \Ezweb\Workflow\Workflow::BEHAVIOR_FIRST_MATCH);
-        $this->assertEquals(4, $results);
+        $this->assertSame(4, $results);
     }
 
     public function testResultShouldThrowAnExceptionOnUnknownBehavior()
@@ -55,13 +55,13 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
     public function testBaseJsonGeneration()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $this->assertEquals('{"name":"customWorkflow","value":[]}', json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString('{"name":"customWorkflow","value":[]}', json_encode($workflow));
     }
 
     public function testBaseJsonGenerationThroughTojsonMethod()
     {
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
-        $this->assertEquals('{"name":"customWorkflow","value":[]}', $workflow->toJson());
+        $this->assertJsonStringEqualsJsonString('{"name":"customWorkflow","value":[]}', $workflow->toJson());
     }
 
     public function testJsonGenerationAfterAddingASimpleRule()
@@ -69,7 +69,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $workflow = new \Ezweb\Workflow\Workflow('customWorkflow');
         $ruleMock = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
-        $this->assertSame(
+        $this->assertJsonStringEqualsJsonString(
             '{"name":"customWorkflow","value":[{"type":"rule","return":4,"value":[],"hash":"deaff913552b5f34782ec69d8b4c0d49"}]}',
             json_encode($workflow)
         );
@@ -82,7 +82,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $ruleMock2 = $this->ruleBuilder->getMock();
         $workflow->addRule($ruleMock);
         $workflow->addRule($ruleMock2);
-        $this->assertEquals('rule->toString' . \Ezweb\Workflow\Workflow::STRING_SEPARATOR . 'rule->toString', (string)$workflow);
+        $this->assertSame('rule->toString' . \Ezweb\Workflow\Workflow::STRING_SEPARATOR . 'rule->toString', (string)$workflow);
     }
 
     public function testWorkflowCreatedFromJsonOutputTheSameJson()
@@ -90,7 +90,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $json = file_get_contents(__DIR__ . '/samples/json/completeWorkflow.json');
         $trimmedJson = json_encode(json_decode($json));
         $workflow = \Ezweb\Workflow\Parser::createFromJson($trimmedJson);
-        $this->assertEquals($trimmedJson, json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString($trimmedJson, json_encode($workflow));
     }
 
     public function testHashIsStillTheSameBetweenWorkflowWithChangedObjectsOrder()
@@ -101,7 +101,7 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $trimmedJsonWithChangedOrder = json_encode(json_decode($jsonWithChangedOrder));
         $workflow = \Ezweb\Workflow\Parser::createFromJson($trimmedJson);
         $workflowWithChangedOrder = \Ezweb\Workflow\Parser::createFromJson($trimmedJsonWithChangedOrder);
-        $this->assertEquals($workflow->getHash(), $workflowWithChangedOrder->getHash());
+        $this->assertSame($workflow->getHash(), $workflowWithChangedOrder->getHash());
     }
 
     public function testBuildAWorkflowManually()
@@ -116,6 +116,6 @@ class WorkflowTest extends \PHPUnit\Framework\TestCase
         $operator->attachNewVars('channelId');
         $json = file_get_contents(__DIR__ . '/samples/json/manualWorkflowBuild.json');
         $trimmedJson = json_encode(json_decode($json));
-        $this->assertEquals($trimmedJson, json_encode($workflow));
+        $this->assertJsonStringEqualsJsonString($trimmedJson, json_encode($workflow));
     }
 }
