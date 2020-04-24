@@ -14,7 +14,7 @@ class ScalarMocker extends \PHPUnit\Framework\TestCase {
 
         // stub mains methods
         $mock->method('getValue')->willReturn($value);
-        $mock->method('getResult')->willReturn($value);
+//        $mock->method('getResult')->willReturn($value);
         $mock->method('getJSONData')->willReturn([
             'type' => $mock->getName(),
             'value' => $value
