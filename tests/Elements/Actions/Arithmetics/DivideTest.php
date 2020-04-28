@@ -26,8 +26,6 @@ class DivideTest extends \PHPUnit\Framework\TestCase
         $method = new \ReflectionMethod($divide, 'isValid');
         $method->setAccessible(true);
 
-        var_dump($method->invoke($divide));
-
         $this->assertSame($expected, $method->invoke($divide));
     }
 
