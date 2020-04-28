@@ -21,20 +21,18 @@ class Modulo extends \Ezweb\Workflow\Elements\Actions\Action
         return implode(' % ', $this->getArgs());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        $args = $this->getArgs();
-        // we need 2 args for this function to work properly
-        if (count($args) !== 2) {
+        // must has args
+        if (empty($childrenValues)) {
             return false;
         }
 
-        // get args values (ignore defined keys)
-        $args = array_values($args);
-
-        // both args must be numeric
-        if (!is_numeric($args[0]) || !is_numeric($args[1])) {
-            return false;
+        // and all numeric
+        foreach ($childrenValues as $childValue) {
+            if (!is_numeric($childValue)) {
+                return false;
+            }
         }
 
         return true;

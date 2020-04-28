@@ -27,7 +27,7 @@ class Not extends Operator
         return 'NOT(' . $this->getOperands()[0] . ')';
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         // we must have a single operand for this operator
         if (count($this->getOperands()) !== 1) {

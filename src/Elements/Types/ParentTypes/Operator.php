@@ -62,8 +62,8 @@ class Operator extends ParentType
         return $this->operator->getOperands();
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        return !empty($this->operator);
+        return $this->operator->isValid($vars, $childrenValues);
     }
 }

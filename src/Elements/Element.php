@@ -58,6 +58,11 @@ abstract class Element implements \JsonSerializable
      */
     abstract public function __toString(): string;
 
-    // Is this Element call valid?
-    abstract protected function isValid(): bool;
+    /**
+     * Is this Element call valid?
+     * @param array $vars
+     * @param array $childrenValues
+     * @return bool
+     */
+    abstract protected function isValid(array $vars, array $childrenValues): bool;
 }

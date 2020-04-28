@@ -47,16 +47,20 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
         $childrenValues = [];
         $values = $this->getValues();
         foreach ($values as $value) {
-            if (!$value->isValid()) {
-                throw new \Exception(static::class . ' is not valid => ' . $value);
-            }
             // Type don't have any children, directly call getResult
             if ($value instanceof self) {
                 $childrenValues[] = $value->runThroughTree($vars);
             } else {
+                if (!$value->isValid($vars, [])) {
+                    throw new \Exception(get_class($value) . ' is not valid => ' . $value);
+                }
                 $childrenValues[] = $value->getResult($vars, []);
             }
         }
+        if (!$this->isValid($vars, $childrenValues)) {
+            throw new \Exception(get_class($this) . ' is not valid => ' . $this);
+        }
         return $this->getResult($vars, $childrenValues);
     }
+
 }

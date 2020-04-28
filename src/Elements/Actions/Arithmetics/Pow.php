@@ -18,18 +18,18 @@ class Pow extends \Ezweb\Workflow\Elements\Actions\Action
         return implode(' ** ', $this->getArgs());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        $args = $this->getArgs();
-
-        // must have only 2 arguments for this actions
-        if (count($args) !== 2) {
+        // must has args
+        if (empty($childrenValues)) {
             return false;
         }
 
-        // arguments must be numeric
-        if (!is_numeric($args[0]) || !is_numeric($args[1])) {
-            return false;
+        // and all numeric
+        foreach ($childrenValues as $childValue) {
+            if (!is_numeric($childValue)) {
+                return false;
+            }
         }
 
         return true;

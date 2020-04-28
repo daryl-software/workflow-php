@@ -18,18 +18,16 @@ class Plus extends \Ezweb\Workflow\Elements\Actions\Action
         return implode(' + ', $this->getArgs());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        $args = $this->getArgs();
-
         // must has args
-        if (empty($args)) {
+        if (empty($childrenValues)) {
             return false;
         }
 
         // and all numeric
-        foreach ($args as $arg) {
-            if (!is_numeric($arg)) {
+        foreach ($childrenValues as $childValue) {
+            if (!is_numeric($childValue)) {
                 return false;
             }
         }

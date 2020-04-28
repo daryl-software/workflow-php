@@ -52,8 +52,8 @@ class Action extends ParentType
         return $this->function->getArgs();
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        return !empty($this->function);
+        return $this->function->isValid($vars, $childrenValues);
     }
 }
