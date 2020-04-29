@@ -28,10 +28,11 @@ abstract class ParentType extends \Ezweb\Workflow\Elements\Types\Type
     }
 
     /**
-     * @param \stdClass $config
+     * @param \stdClass $parsedData
+     * @param \Ezweb\Workflow\Loader $configLoader
      * @return self
      */
-    public static function loadFromConfig(\stdClass $config): self
+    public static function createFromParser(\stdClass $parsedData, \Ezweb\Workflow\Loader $configLoader): self
     {
         return new static();
     }

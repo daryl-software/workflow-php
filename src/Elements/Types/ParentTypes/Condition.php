@@ -11,10 +11,10 @@ class Condition extends ParentType
         return 'condition';
     }
 
-    public static function loadFromConfig(\stdClass $config): self
+    public static function createFromParser(\stdClass $parsedData, \Ezweb\Workflow\Loader $configLoader): self
     {
         $instance = new self();
-        $operatorClassName = self::$typeProviders->getClass($config->operator);
+        $operatorClassName = $configLoader->getTypeProviderConfig()->getClass($parsedData->operator);
         $instance->operator = new $operatorClassName();
         return $instance;
     }

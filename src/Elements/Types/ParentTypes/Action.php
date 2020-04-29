@@ -25,10 +25,10 @@ class Action extends ParentType
         return $this;
     }
 
-    public static function loadFromConfig(\stdClass $config): self
+    public static function createFromParser(\stdClass $parsedData, \Ezweb\Workflow\Loader $configLoader): self
     {
         $instance = new self();
-        $className = self::$actionProvider->getClass($config->name);
+        $className = $configLoader->getActionProviderConfig()->getClass($parsedData->name);
         $instance->function = new $className();
         return $instance;
     }

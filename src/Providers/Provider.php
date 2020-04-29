@@ -6,34 +6,9 @@ abstract class Provider
     /**
      * @var mixed[]
      */
-    protected static array $instance = [];
-    /**
-     * @var mixed[]
-     */
     protected array $registeredElement = [];
 
     abstract public static function getProviderType(): string;
-
-    final protected function __construct()
-    {
-    }
-
-    /**
-     * @return static
-     */
-    public static function getInstance(): self
-    {
-        $providerType = static::getProviderType();
-        if (!is_a($providerType, \Ezweb\Workflow\Elements\Element::class, true)) {
-            throw new \RuntimeException('Cannot get instance of ' . $providerType . ' provider');
-        }
-
-        if (!isset(static::$instance[$providerType])) {
-            static::$instance[$providerType] = new static();
-        }
-
-        return static::$instance[$providerType];
-    }
 
     /**
      * @param string $element

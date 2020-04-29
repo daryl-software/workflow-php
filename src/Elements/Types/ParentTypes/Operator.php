@@ -14,10 +14,10 @@ class Operator extends ParentType
         return 'operator';
     }
 
-    public static function loadFromConfig(\stdClass $config): self
+    public static function createFromParser(\stdClass $parsedData, \Ezweb\Workflow\Loader $configLoader): self
     {
         $instance = new self();
-        $operatorClass = self::$operatorProvider->getClass($config->operator);
+        $operatorClass = $configLoader->getOperatorProviderConfig()->getClass($parsedData->operator);
         $instance->operator = new $operatorClass();
         return $instance;
     }

@@ -31,7 +31,7 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
      * @param \stdClass $config
      * @return static
      */
-    public static function loadFromConfig(\stdClass $config): self
+    public static function createFromParser(\stdClass $config, \Ezweb\Workflow\Loader $configLoader): self
     {
         $instance = new static();
         if (!is_scalar($config->value) && $config->value !== null) {
