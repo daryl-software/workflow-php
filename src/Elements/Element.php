@@ -15,7 +15,7 @@ abstract class Element implements \JsonSerializable
             $hashes[] = $value->getHash();
         }
         sort($hashes, SORT_STRING);
-        return md5($this->getName() . '.' . implode('.', $hashes));
+        return md5(static::getName() . '.' . implode('.', $hashes));
     }
 
     final public function jsonSerialize()

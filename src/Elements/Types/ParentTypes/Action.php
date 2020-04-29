@@ -7,7 +7,7 @@ class Action extends ParentType
     /**
      * @var \Ezweb\Workflow\Elements\Actions\Action
      */
-    public \Ezweb\Workflow\Elements\Actions\Action $function;
+    protected \Ezweb\Workflow\Elements\Actions\Action $function;
 
     public static function getName(): string
     {
