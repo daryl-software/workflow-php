@@ -3,7 +3,7 @@
 namespace Ezweb\Workflow\Test\Elements\Action\Arithmetics;
 
 
-class DivideTest extends \PHPUnit\Framework\TestCase
+class PowTest extends \PHPUnit\Framework\TestCase
 {
     private \Ezweb\Workflow\Test\Mocker\ScalarMocker $scalarBuilder;
 
@@ -12,19 +12,19 @@ class DivideTest extends \PHPUnit\Framework\TestCase
         $this->scalarBuilder = new \Ezweb\Workflow\Test\Mocker\ScalarMocker();
     }
 
-    public function testCreateANewDivideElement()
+    public function testCreateANewPowElement()
     {
-        $divide = \Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::create();
-        $this->assertInstanceOf(\Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::class, $divide);
+        $pow = \Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::create();
+        $this->assertInstanceOf(\Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::class, $pow);
     }
 
     public function testAddArg()
     {
-        $divide = \Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::create();
+        $pow = \Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::create();
 
-        $divide->addArgs($this->scalarBuilder->getMockWithValue(1));
-        $divide->addArgs($this->scalarBuilder->getMockWithValue(2));
-        $this->assertCount(2, $divide->getArgs());
+        $pow->addArgs($this->scalarBuilder->getMockWithValue(1));
+        $pow->addArgs($this->scalarBuilder->getMockWithValue(2));
+        $this->assertCount(2, $pow->getArgs());
     }
 
     /**
@@ -32,24 +32,27 @@ class DivideTest extends \PHPUnit\Framework\TestCase
      */
     public function testResultIsOk($a, $b, $expected)
     {
-        $divide = \Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::create();
+        $pow = \Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::create();
 
-        $method = new \ReflectionMethod($divide, 'getResult');
+        $method = new \ReflectionMethod($pow, 'getResult');
         $method->setAccessible(true);
 
         $this->assertSame(
             $expected,
-            $method->invoke($divide, [], [$a, $b]),
-            'getResult for ' . $a . ' / ' . $b . ' = ' . $expected
+            $method->invoke($pow, [], [$a, $b]),
+            'getResult for ' . $a . ' ** ' . $b . ' = ' . $expected
         );
     }
 
     public function resultIsOkProvider()
     {
         return [
-            [4, 2, 2],
-            [4.5, 2, 2.25],
-            [4.5, 2.5, 1.8],
+            [4, 2, 16],
+            [2, 3, 8],
+            [4.5, 2, 20.25],
+            [2.5, 4.5, 61.76323555016366],
+            [3.1415, 3.1415, 36.45491472872008],
+            [9, 7, 4782969],
         ];
     }
 
@@ -58,14 +61,14 @@ class DivideTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsValid($a, $b, $expected)
     {
-        $divide = \Ezweb\Workflow\Elements\Actions\Arithmetics\Divide::create();
+        $pow = \Ezweb\Workflow\Elements\Actions\Arithmetics\Pow::create();
 
-        $method = new \ReflectionMethod($divide, 'isValid');
+        $method = new \ReflectionMethod($pow, 'isValid');
         $method->setAccessible(true);
 
         $this->assertSame(
             $expected,
-            $method->invokeArgs($divide, [[], [$a, $b]]),
+            $method->invokeArgs($pow, [[], [$a, $b]]),
             'isValid for ' . $a . ' and ' . $b . ' expect ' . ($expected ? "true" : "false")
         );
     }

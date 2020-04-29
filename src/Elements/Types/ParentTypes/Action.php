@@ -44,7 +44,7 @@ class Action extends ParentType
 
     public function __toString(): string
     {
-        return '('.$this->function.')';
+        return '(' . $this->function . ')';
     }
 
     public function getValues(): array
