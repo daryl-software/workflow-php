@@ -8,7 +8,6 @@ class ScalarMocker extends \PHPUnit\Framework\TestCase {
         /** @var \Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar $mock */
         $mock = $this
             ->getMockBuilder(\Ezweb\Workflow\Elements\Types\ScalarTypes\Scalar::class)
-            ->disableOriginalConstructor()
             ->setMethodsExcept(['getHash', 'getName'])
             ->getMock();
 

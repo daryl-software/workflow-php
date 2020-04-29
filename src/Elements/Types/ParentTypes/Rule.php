@@ -30,10 +30,10 @@ class Rule extends ParentType
         return true;
     }
 
-    public static function loadFromConfig(\stdClass $config): ParentType
+    public static function createFromParser(\stdClass $parsedData, \Ezweb\Workflow\Loader $configLoader): ParentType
     {
         $instance = new static();
-        $instance->return = $config->return;
+        $instance->return = $parsedData->return;
         return $instance;
     }
 

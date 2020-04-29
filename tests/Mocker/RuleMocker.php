@@ -17,7 +17,6 @@ class RuleMocker extends \PHPUnit\Framework\TestCase
         // mock Rule object
         $mock = $this
             ->getMockBuilder(\Ezweb\Workflow\Elements\Types\ParentTypes\Rule::class)
-            ->disableOriginalConstructor()
             ->setMethodsExcept(['getHash'])
             ->getMock();
 

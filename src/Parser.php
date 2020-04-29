@@ -5,20 +5,11 @@ namespace Ezweb\Workflow;
 class Parser
 {
     /**
-     *
-     */
-    private static function initialize(): void
-    {
-        Loader::load();
-    }
-
-    /**
      * @param string $json
      * @return Workflow
      */
     public static function createFromJson(string $json): Workflow
     {
-        self::initialize();
         $decodedJson = json_decode($json);
         if ($decodedJson === false) {
             throw new \RuntimeException('Invalid JSON: ' . json_last_error_msg());
@@ -35,31 +26,35 @@ class Parser
     }
 
     /**
-     * @param \stdClass $decodedJson
+     * @param \stdClass $decodedData
      * @return Elements\Types\Type
      */
-    private static function parse(\stdClass $decodedJson): Elements\Types\Type
+    private static function parse(\stdClass $decodedData, Loader $configLoader = null): Elements\Types\Type
     {
-        if (!isset($decodedJson->type)) {
+        if (!isset($decodedData->type)) {
             throw new \RuntimeException(
                 'Object type property must be defined:'
                 . PHP_EOL
-                . json_encode($decodedJson, JSON_PRETTY_PRINT)
+                . json_encode($decodedData, JSON_PRETTY_PRINT)
             );
         }
 
-        $classType = \Ezweb\Workflow\Providers\Type::getInstance()->getClass($decodedJson->type);
+        if ($configLoader === null) {
+            $configLoader = new Loader();
+        }
+
+        $classType = $configLoader->getTypeProviderConfig()->getClass($decodedData->type);
         /** @var \Ezweb\Workflow\Elements\Types\Type $classType */
-        $typeElement = $classType::loadFromConfig($decodedJson);
-        if (\is_array($decodedJson->value)) {
+        $typeElement = $classType::createFromParser($decodedData, $configLoader);
+        if (\is_array($decodedData->value)) {
             /** @var \Ezweb\Workflow\Elements\Types\ParentTypes\ParentType $typeElement */
-            /** @var mixed $v */
-            foreach ($decodedJson->value as $v) {
-                $typeElement->addValue(self::parse($v));
+            /** @var mixed $value */
+            foreach ($decodedData->value as $value) {
+                $typeElement->addValue(self::parse($value));
             }
-        } elseif ($decodedJson->value instanceof \stdClass) {
+        } elseif ($decodedData->value instanceof \stdClass) {
             /** @var \Ezweb\Workflow\Elements\Types\ParentTypes\ParentType $typeElement */
-            $typeElement->addValue(self::parse($decodedJson->value));
+            $typeElement->addValue(self::parse($decodedData->value));
         }
 
         return $typeElement;
