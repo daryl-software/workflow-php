@@ -6,7 +6,7 @@ class GreaterOrEqual extends Operator
 {
     public static function getName(): string
     {
-        return 'greaterOrEqualThan';
+        return 'greaterOrEqual';
     }
 
     protected function getResult(array $vars, array $childrenValues): bool
