@@ -89,7 +89,7 @@ class Rule extends ParentType
         return $this->runThroughTree($vars);
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         return !empty($this->getValues());
     }

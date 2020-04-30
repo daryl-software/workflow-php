@@ -32,7 +32,7 @@ class All extends Operator
         return implode(' AND ', $this->getOperands());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         return !empty($this->getOperands());
     }

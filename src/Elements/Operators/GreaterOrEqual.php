@@ -27,7 +27,7 @@ class GreaterOrEqual extends Operator
         return  implode(' >= ', $this->getOperands());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         // we must have 2 operands for this operator
         if (count($this->getOperands()) !== 2) {

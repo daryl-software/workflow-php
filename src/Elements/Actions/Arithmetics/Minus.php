@@ -22,18 +22,16 @@ class Minus extends \Ezweb\Workflow\Elements\Actions\Action
         return implode(' - ', $this->getArgs());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        $args = $this->getArgs();
-
-        // we need args
-        if (empty($args)) {
+        // must has args
+        if (empty($childrenValues)) {
             return false;
         }
 
-        // and only numeric
-        foreach ($args as $arg) {
-            if (!is_numeric($arg)) {
+        // and all numeric
+        foreach ($childrenValues as $childValue) {
+            if (!is_numeric($childValue)) {
                 return false;
             }
         }

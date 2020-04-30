@@ -34,7 +34,7 @@ class Any extends Operator
         return implode(' OR ', $this->getOperands());
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         return !empty($this->getOperands());
     }

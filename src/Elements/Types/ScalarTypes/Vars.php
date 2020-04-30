@@ -33,7 +33,7 @@ class Vars extends ScalarType
         return (string) $this->scalarValue;
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
         return !empty($this->getValue());
     }

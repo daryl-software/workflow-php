@@ -35,20 +35,8 @@ class Equal extends Operator
         return '(' . implode(' = ', $this->getOperands()) . ')';
     }
 
-    protected function isValid(): bool
+    protected function isValid(array $vars, array $childrenValues): bool
     {
-        $operands = $this->getOperands();
-        if (empty($operands)) {
-            return false;
-        }
-
-        // every operands must be scalar
-        foreach ($operands as $operand) {
-            if (!is_scalar($operand)) {
-                return false;
-            }
-        }
-
-        return true;
+        return !empty($this->getOperands());
     }
 }
