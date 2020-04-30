@@ -6,7 +6,7 @@ class Greater extends Operator
 {
     public static function getName(): string
     {
-        return 'greaterThan';
+        return 'greater';
     }
 
     protected function getResult(array $vars, array $childrenValues)
