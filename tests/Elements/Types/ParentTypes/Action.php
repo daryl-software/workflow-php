@@ -2,8 +2,6 @@
 
 namespace Ezweb\Workflow\Test\Elements\Types\ParentTypes;
 
-use Ezweb\Workflow\Loader;
-use Ezweb\Workflow\Parser;
 
 class Action extends \PHPUnit\Framework\TestCase
 {
@@ -72,28 +70,5 @@ class Action extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf(\Ezweb\Workflow\Elements\Types\ParentTypes\Action::class, $action);
         $this->assertInstanceOf(\Ezweb\Workflow\Elements\Actions\Arithmetics\Modulo::class, $function);
-    }
-
-    public function testGetValues()
-    {
-        $scalar = new \stdClass();
-        $scalar->type = 'scalar';
-        $scalar->value = 2;
-
-        $vars = new \stdClass();
-        $vars->type = 'scalar';
-        $vars->value = 'toto';
-
-        $object = new \stdClass();
-        $object->type = 'action';
-        $object->name = 'modulo';
-        $object->value = [
-            $scalar,
-            $vars
-        ];
-
-        $action = \Ezweb\Workflow\Elements\Types\ParentTypes\Action::createFromParser($object, new Loader());
-
-        dump($action);
     }
 }
