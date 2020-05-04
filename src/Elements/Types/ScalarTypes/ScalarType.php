@@ -34,7 +34,7 @@ abstract class ScalarType extends \Ezweb\Workflow\Elements\Types\Type
     public static function createFromParser(\stdClass $config, \Ezweb\Workflow\Loader $configLoader): self
     {
         $instance = new static();
-        if (!is_scalar($config->value) && $config->value !== null) {
+        if ((!is_scalar($config->value) || is_array($config->value)) && $config->value !== null) {
             throw new \InvalidArgumentException('ScalarType must have a scalar value');
         }
         $instance->scalarValue = $config->value;

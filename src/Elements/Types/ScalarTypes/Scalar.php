@@ -29,7 +29,10 @@ class Scalar extends ScalarType
 
     public function __toString(): string
     {
-        return (string) $this->getValue();
+        if (is_string($this->getValue())) {
+            return (string)'"' . $this->getValue() . '"';
+        }
+        return (string)$this->getValue();
     }
 
     protected function isValid(array $vars, array $childrenValues): bool

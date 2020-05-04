@@ -31,7 +31,7 @@ class Any extends Operator
 
     public function __toString(): string
     {
-        return implode(' OR ', $this->getOperands());
+        return '(' . implode(' OR ', $this->getOperands()) . ')';
     }
 
     protected function isValid(array $vars, array $childrenValues): bool

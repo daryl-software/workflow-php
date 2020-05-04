@@ -29,7 +29,7 @@ class All extends Operator
 
     public function __toString(): string
     {
-        return implode(' AND ', $this->getOperands());
+        return '(' . implode(' AND ', $this->getOperands()) . ')';
     }
 
     protected function isValid(array $vars, array $childrenValues): bool

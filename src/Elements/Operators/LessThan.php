@@ -6,7 +6,7 @@ class LessThan extends Operator
 {
     public static function getName(): string
     {
-        return 'greaterThan';
+        return 'less';
     }
 
     protected function getResult(array $vars, array $childrenValues)
