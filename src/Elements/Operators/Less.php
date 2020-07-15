@@ -2,7 +2,7 @@
 
 namespace Ezweb\Workflow\Elements\Operators;
 
-class LessThan extends Operator
+class Less extends Operator
 {
     public static function getName(): string
     {

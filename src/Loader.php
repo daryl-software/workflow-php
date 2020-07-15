@@ -46,7 +46,7 @@ class Loader
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Not::class);
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Greater::class);
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\GreaterOrEqual::class);
-        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessThan::class);
+        $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\Less::class);
         $operatorProvider->register(\Ezweb\Workflow\Elements\Operators\LessOrEqual::class);
         $this->operatorProviderConfig = $operatorProvider;
 
